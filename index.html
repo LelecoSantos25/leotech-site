@@ -2,9 +2,9 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
-    <title>LeoTech Solutions - TI Especializada</title>
+    <title>LeoTech Solutions - Especialistas em TI</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -12,12 +12,13 @@
             --primary-color: #007bff;
             --secondary-color: #00fa9a;
             --whatsapp-color: #25D366;
-            --text-main: #222222;
-            --text-muted: #555555;
             --bg-body: #f0f2f5;
             --bg-card: #ffffff;
+            --text-main: #222222;
+            --text-muted: #555555;
+            --border-color: #eeeeee;
             --shadow: 0 10px 30px rgba(0,0,0,0.08);
-            --radius: 15px;
+            --card-radius: 20px;
         }
 
         body.dark-mode {
@@ -25,90 +26,103 @@
             --bg-card: #1a1a1a;
             --text-main: #f1f1f1;
             --text-muted: #aaaaaa;
+            --border-color: #333333;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg-body); color: var(--text-main); line-height: 1.6; transition: 0.3s; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; transition: 0.3s; overflow-x: hidden; }
         .container { width: 90%; max-width: 1100px; margin: 0 auto; }
         
-        /* HEADER RESPONSIVO */
+        /* HEADER - Idêntico ao Desktop mas adaptável */
         header { 
-            background: var(--bg-card); 
+            background-color: rgba(255, 255, 255, 0.9); 
+            backdrop-filter: blur(10px); 
             padding: 15px 0; 
             position: sticky; 
             top: 0; 
             z-index: 1000; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        header .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
-        .logo { font-weight: 800; color: var(--primary-color); font-size: 1.2rem; }
+        body.dark-mode header { background-color: rgba(26, 26, 26, 0.9); }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 800; color: var(--primary-color); font-size: 1.2rem; display: flex; align-items: center; gap: 8px; }
         
-        nav { width: 100%; order: 3; margin-top: 15px; } /* Mobile: Menu abaixo */
-        nav ul { display: flex; justify-content: space-around; list-style: none; border-top: 1px solid #eee; padding-top: 10px; }
-        nav a { text-decoration: none; color: var(--text-main); font-size: 0.8rem; font-weight: 600; }
+        nav ul { display: none; } /* Escondido no mobile, aparece no desktop */
+        .header-controls { display: flex; gap: 10px; }
+        .icon-btn { background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-main); }
 
-        .controls { display: flex; gap: 10px; }
-        .icon-btn { background: none; border: none; cursor: pointer; font-size: 1.2rem; color: var(--text-main); }
+        /* HERO SECTION */
+        .hero { padding: 60px 0; text-align: center; }
+        .hero h1 { font-size: 2.2rem; margin-bottom: 20px; line-height: 1.2; }
+        .hero p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px; }
+        .typing-text { color: var(--primary-color); font-weight: 800; }
+        .hero-image { width: 100%; border-radius: var(--card-radius); box-shadow: var(--shadow); margin-top: 30px; }
 
-        /* HERO AJUSTADO */
-        .hero { padding: 40px 0; text-align: center; }
-        .hero h1 { font-size: 1.8rem; margin-bottom: 15px; line-height: 1.2; }
-        .hero p { font-size: 1rem; color: var(--text-muted); margin-bottom: 25px; }
-        .typing-text { color: var(--primary-color); border-right: 2px solid; }
-        .hero-image { width: 100%; border-radius: var(--radius); box-shadow: var(--shadow); margin-top: 20px; }
-
-        .btn { display: inline-block; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; width: 100%; margin-bottom: 10px; text-align: center; }
+        .btn { display: inline-block; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: bold; transition: 0.3s; text-align: center; width: 100%; margin-bottom: 10px; }
         .btn-primary { background: var(--primary-color); color: white; }
-        .btn-outline { border: 2px solid var(--primary-color); color: var(--primary-color); }
+        .btn-outline { border: 2px solid var(--border-color); color: var(--text-main); }
 
-        /* SEÇÕES E GRIDS */
-        .section { padding: 50px 0; }
-        h2 { text-align: center; margin-bottom: 30px; font-size: 1.6rem; }
-        
-        .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        .card { background: var(--bg-card); padding: 25px; border-radius: var(--radius); box-shadow: var(--shadow); }
+        /* GRIDS GERAIS */
+        .section { padding: 60px 0; }
+        h2 { text-align: center; font-size: 2rem; margin-bottom: 40px; }
+        .grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
 
-        /* FAQ */
-        .faq-item { background: var(--bg-card); margin-bottom: 10px; border-radius: 10px; }
-        .faq-q { padding: 15px; cursor: pointer; font-weight: bold; display: flex; justify-content: space-between; }
-        .faq-a { padding: 0 15px; max-height: 0; overflow: hidden; transition: 0.3s; color: var(--text-muted); font-size: 0.9rem; }
-        .faq-a.active { padding-bottom: 15px; max-height: 200px; }
+        /* CARDS DE SERVIÇO (Estilo original mantido) */
+        .card { background: var(--bg-card); padding: 30px; border-radius: var(--card-radius); box-shadow: var(--shadow); border: 1px solid transparent; transition: 0.3s; }
+        .card:hover { border-color: var(--primary-color); transform: translateY(-5px); }
+        .icon-circle { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; margin-bottom: 20px; }
+        .bg-blue { background: #007bff; }
+        .bg-green { background: #28a745; }
+        .bg-orange { background: #fd7e14; }
 
-        /* CONTATO COMPLETO */
-        .contact-info p { margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-        .contact-info i { color: var(--primary-color); width: 20px; }
+        /* SUPORTE REMOTO */
+        .remote-box { background: linear-gradient(135deg, #007bff, #0056b3); color: white; padding: 40px 20px; border-radius: var(--card-radius); text-align: center; }
+        .remote-box h2 { color: white; margin-bottom: 15px; }
 
-        /* FLOATING */
-        .float-wpp { position: fixed; bottom: 20px; right: 20px; background: var(--whatsapp-color); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 1000; }
+        /* FAQ ACORDEÃO */
+        .faq-item { background: var(--bg-card); margin-bottom: 10px; border-radius: 12px; overflow: hidden; }
+        .faq-q { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; font-weight: bold; border-bottom: 1px solid var(--border-color); }
+        .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: 0.3s; color: var(--text-muted); }
+        .faq-a.active { padding: 20px; max-height: 300px; }
 
-        /* AJUSTES PARA TELAS MAIORES (TABLET/PC) */
-        @media (min-width: 768px) {
-            header .container { flex-wrap: nowrap; }
-            nav { width: auto; order: 2; margin-top: 0; }
-            nav ul { border: none; padding: 0; gap: 20px; }
-            nav a { font-size: 0.9rem; }
-            .hero h1 { font-size: 3rem; }
-            .grid { grid-template-columns: repeat(2, 1fr); }
-            .services-grid { grid-template-columns: repeat(3, 1fr); }
+        /* CONTATO E MAPA */
+        .contact-item { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+        .contact-icon { width: 45px; height: 45px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; }
+        .map-container { height: 300px; border-radius: var(--card-radius); overflow: hidden; margin-top: 20px; }
+        iframe { width: 100%; height: 100%; border: 0; }
+
+        /* FLOATING BUTTONS */
+        .float-btn { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background: var(--whatsapp-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 1000; text-decoration: none; }
+
+        /* CONFIGURAÇÕES PARA DESKTOP (Aqui a mágica acontece) */
+        @media (min-width: 992px) {
+            nav ul { display: flex; gap: 25px; list-style: none; }
+            nav a { text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 0.95rem; }
+            .hero h1 { font-size: 3.5rem; }
+            .hero-buttons { display: flex; justify-content: center; gap: 15px; }
             .btn { width: auto; }
+            .grid { grid-template-columns: repeat(3, 1fr); }
+            .grid-2 { grid-template-columns: repeat(2, 1fr); }
+            .grid-4 { grid-template-columns: repeat(4, 1fr); }
+            .hero-image { max-height: 500px; object-fit: cover; }
         }
-
     </style>
 </head>
 <body>
 
     <header>
         <div class="container">
-            <div class="logo">LeoTech Solutions</div>
+            <div class="logo"><i class="fas fa-layer-group"></i> LeoTech Solutions</div>
             <nav>
                 <ul>
                     <li><a href="#sobre" data-en="About">Sobre</a></li>
                     <li><a href="#servicos" data-en="Services">Serviços</a></li>
                     <li><a href="#orcamentos" data-en="Pricing">Orçamentos</a></li>
+                    <li><a href="#faq" data-en="FAQ">FAQ</a></li>
                     <li><a href="#contato" data-en="Contact">Contato</a></li>
                 </ul>
             </nav>
-            <div class="controls">
+            <div class="header-controls">
                 <button id="lang-toggle" class="icon-btn">🌐</button>
                 <button id="theme-toggle" class="icon-btn">🌙</button>
             </div>
@@ -118,101 +132,130 @@
     <section class="hero">
         <div class="container">
             <h1 data-en="IT Solutions for">Soluções em TI para <br><span class="typing-text"></span></h1>
-            <p data-en="Transforming challenges into growth since 2014.">Transformamos desafios tecnológicos em oportunidades desde 2014.</p>
-            <a href="https://wa.me/5511986039829" class="btn btn-primary" data-en="Contact Us">Falar com Técnico</a>
-            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80" class="hero-image" alt="Tech">
+            <p data-en="Transforming technological challenges into opportunities since 2014.">Transformamos desafios tecnológicos em oportunidades de crescimento desde 2014.</p>
+            <div class="hero-buttons">
+                <a href="#servicos" class="btn btn-primary" data-en="Our Services">🚀 Nossos Serviços</a>
+                <a href="https://wa.me/5511986039829" class="btn btn-outline" data-en="Contact">💬 WhatsApp</a>
+            </div>
+            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80" class="hero-image" alt="Tech">
         </div>
     </section>
 
     <section id="sobre" class="section">
         <div class="container">
-            <h2 data-en="About Us">Sobre Nós</h2>
-            <div class="card">
-                <p data-en="Dedicated to offering custom IT solutions for you and your company.">Desde 2014, a LeoTech Solutions oferece suporte especializado para usuários domésticos e pequenas empresas, focando em atendimento humanizado e preço justo.</p>
+            <h2 data-en="About Us">Sobre a LeoTech</h2>
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3 data-en="Our Mission">Nossa Missão</h3>
+                    <p data-en="Offer affordable and efficient IT solutions.">Oferecer suporte de TI humanizado e acessível para todos os tipos de clientes, garantindo segurança e eficiência.</p>
+                </div>
+                <div class="card bg-green" style="color: white;">
+                    <h3 data-en="Why us?">Por que nós?</h3>
+                    <p data-en="Over 10 years of experience in the market.">Mais de 10 anos de experiência, preços transparentes e suporte especializado pós-venda.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="servicos" class="section">
         <div class="container">
-            <h2 data-en="Services">Serviços</h2>
-            <div class="grid services-grid">
+            <h2 data-en="Services">Nossos Serviços</h2>
+            <div class="grid grid-3">
                 <div class="card">
-                    <i class="fas fa-wrench"></i>
+                    <div class="icon-circle bg-blue"><i class="fas fa-wrench"></i></div>
                     <h3 data-en="Support">Suporte Técnico</h3>
-                    <p data-en="Hardware and software maintenance.">Manutenção completa de PCs e Notebooks.</p>
+                    <p>Manutenção preventiva e corretiva de computadores e notebooks.</p>
                 </div>
                 <div class="card">
-                    <i class="fas fa-network-wired"></i>
-                    <h3 data-en="Networks">Infraestrutura</h3>
-                    <p data-en="Network setup and shared folders.">Redes Wi-Fi e Pastas Compartilhadas.</p>
+                    <div class="icon-circle bg-orange"><i class="fas fa-network-wired"></i></div>
+                    <h3 data-en="Infrastructure">Infraestrutura</h3>
+                    <p>Redes corporativas, Wi-Fi e mapeamento de pastas seguras.</p>
                 </div>
                 <div class="card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3 data-en="Security">Segurança</h3>
-                    <p data-en="Virus removal and backups.">Remoção de vírus e Backup em nuvem.</p>
+                    <div class="icon-circle bg-green"><i class="fas fa-shield-alt"></i></div>
+                    <h3 data-en="Security">Segurança Digital</h3>
+                    <p>Remoção de malwares, antivírus e backup profissional.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <div class="container">
+        <div class="remote-box">
+            <h2 data-en="Remote Support">Suporte Remoto</h2>
+            <p data-en="Download AnyDesk for quick assistance.">Precisa de ajuda rápida? Baixe o AnyDesk e nos chame.</p>
+            <a href="https://anydesk.com/pt/downloads/windows" target="_blank" class="btn btn-primary" style="background: #28a745; border:none; margin-top: 15px;">Baixar AnyDesk</a>
+        </div>
+    </div>
+
     <section id="orcamentos" class="section">
         <div class="container">
-            <h2 data-en="Pricing">Orçamentos</h2>
-            <div class="card" style="text-align: center; border: 2px solid var(--primary-color);">
-                <h3 data-en="Formatting Pack">Pacote Formatação</h3>
+            <h2 data-en="Best Offer">Orçamento Especial</h2>
+            <div class="card" style="text-align: center; border: 2px solid var(--primary-color); max-width: 500px; margin: 0 auto;">
+                <h3 data-en="Formatting">Formatação Completa</h3>
                 <p>Windows 10/11 Pro + Office 365</p>
-                <div style="font-size: 2rem; font-weight: 800; color: var(--primary-color); margin: 15px 0;">R$ 110,00</div>
-                <a href="https://wa.me/5511986039829" class="btn btn-primary" data-en="Schedule">Agendar Agora</a>
+                <div style="font-size: 3rem; font-weight: 800; color: var(--primary-color); margin: 20px 0;">R$ 110,00</div>
+                <a href="https://wa.me/5511986039829" class="btn btn-primary">Contratar Agora</a>
             </div>
         </div>
     </section>
 
     <section id="faq" class="section">
         <div class="container">
-            <h2 data-en="FAQ">Dúvidas Frequentes</h2>
+            <h2 data-en="FAQ">Perguntas Frequentes</h2>
             <div class="faq-item">
-                <div class="faq-q">Atende em domicílio? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-a">Sim! Atendemos em toda São Paulo e Região Metropolitana.</div>
+                <div class="faq-q">Atende São Paulo? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-a">Sim! Atendemos toda a capital e região metropolitana em domicílio.</div>
             </div>
             <div class="faq-item">
-                <div class="faq-q">Tem garantia? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-a">Sim, todos os serviços têm garantia técnica total.</div>
+                <div class="faq-q">Quais as formas de pagamento? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-a">Aceitamos PIX, Cartões de Crédito e Débito (parcelamos conforme o valor).</div>
             </div>
         </div>
     </section>
 
     <section id="contato" class="section">
         <div class="container">
-            <h2 data-en="Contact">Contato Completo</h2>
-            <div class="grid">
-                <div class="card contact-info">
-                    <p><i class="fas fa-phone"></i> (11) 98603-9829</p>
-                    <p><i class="fas fa-envelope"></i> contato@leotechsolutions.com.br</p>
-                    <p><i class="fas fa-map-marker-alt"></i> São Paulo e Região</p>
-                    <p><i class="fab fa-instagram"></i> @lelecosantos25</p>
+            <h2 data-en="Contact">Contato</h2>
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="contact-item">
+                        <div class="contact-icon bg-blue"><i class="fas fa-phone"></i></div>
+                        <div><strong>Telefone</strong><br>(11) 98603-9829</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon bg-green"><i class="fab fa-instagram"></i></div>
+                        <div><strong>Instagram</strong><br>@lelecosantos25</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon bg-orange"><i class="fas fa-envelope"></i></div>
+                        <div><strong>E-mail</strong><br>contato@leotechsolutions.com.br</div>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d234133.56708798534!2d-46.73637845!3d-23.5485988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce44818353e501%3A0xc639d67568537b02!2zU8OjbyBQYXVsbywgU1A!5e0!3m2!1spt-BR!2sbr!4v1700000000000"></iframe>
                 </div>
             </div>
         </div>
     </section>
 
-    <a href="https://wa.me/5511986039829" class="float-wpp"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://wa.me/5511986039829" class="float-btn"><i class="fab fa-whatsapp"></i></a>
 
     <script>
-        // Digitação
+        // Efeito Typing
         const text = document.querySelector(".typing-text");
         const words = ["Você", "Sua Empresa", "Seu Negócio"];
-        let i = 0, j = 0, isDeleting = false;
+        let i = 0, j = 0, deleting = false;
         function type() {
             const current = words[i];
-            text.textContent = isDeleting ? current.substring(0, j--) : current.substring(0, j++);
-            if (!isDeleting && j > current.length) { isDeleting = true; setTimeout(type, 2000); }
-            else if (isDeleting && j === 0) { isDeleting = false; i = (i + 1) % words.length; setTimeout(type, 500); }
-            else { setTimeout(type, isDeleting ? 50 : 100); }
+            text.textContent = deleting ? current.substring(0, j--) : current.substring(0, j++);
+            if(!deleting && j > current.length) { deleting = true; setTimeout(type, 2000); }
+            else if(deleting && j === 0) { deleting = false; i = (i + 1) % words.length; setTimeout(type, 500); }
+            else { setTimeout(type, deleting ? 50 : 150); }
         }
         type();
 
-        // FAQ Acordeão
+        // FAQ
         document.querySelectorAll('.faq-q').forEach(q => {
             q.addEventListener('click', () => q.nextElementSibling.classList.toggle('active'));
         });
