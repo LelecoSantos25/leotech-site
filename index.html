@@ -2,16 +2,9 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
-    
-    <meta name="description" content="LeoTech Solutions - Soluções completas em TI. Suporte técnico, formatação, redes corporativas e segurança digital em São Paulo.">
-    <meta property="og:title" content="LeoTech Solutions | Especialistas em TI">
-    <meta property="og:description" content="Transformamos desafios tecnológicos em oportunidades. Formatação, configuração de redes, mapeamento de pastas e suporte especializado.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80">
-    
     <title>LeoTech Solutions - Soluções em TI</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -22,7 +15,6 @@
             --whatsapp-color: #25D366;
             --chat-color: #00a8ff;
             --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            
             --bg-body: #f0f2f5; 
             --bg-section: #ffffff;
             --bg-card: #ffffff;
@@ -31,10 +23,6 @@
             --border-color: #eeeeee;
             --shadow: 0 10px 30px rgba(0,0,0,0.08); 
             --card-radius: 20px; 
-            
-            --chat-bg: #ffffff;
-            --chat-msg-bot: #f1f1f1;
-            --chat-msg-user: #00a8ff;
         }
 
         body.dark-mode {
@@ -45,640 +33,240 @@
             --text-muted: #aaaaaa;
             --border-color: #333333;
             --shadow: 0 10px 30px rgba(0,0,0,0.5);
-            --chat-bg: #2a2a2a;
-            --chat-msg-bot: #333333;
-            --chat-msg-user: #0056b3;
         }
 
-        /* Barra de Rolagem Customizada */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: var(--bg-body); }
-        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--primary-color), var(--secondary-color)); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
-
-        body { font-family: var(--font-family); margin: 0; padding: 0; background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; scroll-behavior: smooth; transition: background-color 0.3s, color 0.3s; overflow-x: hidden; }
+        body { font-family: var(--font-family); margin: 0; padding: 0; background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
         
-        /* Preloader */
-        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-body); z-index: 99999; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s ease, visibility 0.5s; }
-        .spinner { width: 50px; height: 50px; border: 5px solid var(--border-color); border-top-color: var(--primary-color); border-radius: 50%; animation: spin 1s linear infinite; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-        body.loaded #preloader { opacity: 0; visibility: hidden; }
+        /* Containers responsivos */
+        .container { width: 90%; max-width: 1100px; margin: 0 auto; padding: 10px; }
+        .section { padding: 40px 0; }
 
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        h1, h2, h3 { color: var(--text-main); margin-bottom: 15px; font-weight: 800; }
-        h2 { text-align: center; font-size: 2.2em; margin-top: 50px; }
-        p { margin-bottom: 20px; color: var(--text-muted); }
-        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
-        .section { padding: 60px 20px; }
-        .text-center { text-align: center; }
-
-        .btn { display: inline-block; padding: 12px 25px; text-decoration: none; border-radius: 8px; font-weight: bold; transition: all 0.3s; border: none; cursor: pointer; font-size: 1em; text-align: center; }
-        .btn-primary { background-color: var(--primary-color); color: white; }
-        .btn-primary:hover { background-color: #0056b3; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,123,255,0.3); }
-        .btn-outline { background-color: transparent; color: var(--text-main); border: 2px solid var(--border-color); }
-        .btn-outline:hover { background-color: var(--bg-card); border-color: var(--primary-color); color: var(--primary-color); transform: translateY(-2px); }
-        .btn-gradient { background: linear-gradient(45deg, #007bff, #00d2ff); color: white; width: 100%; border-radius: 8px; padding: 15px; font-size: 1.1em; }
-        .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,210,255,0.4); }
-        .btn-submit { background-color: #ff4757; color: white; width: 100%; padding: 15px; font-size: 1.1em; border-radius: 8px; margin-top: 10px; }
-        .btn-submit:hover { background-color: #e84118; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3); }
-
-        /* Header Glassmorphism */
-        header { background-color: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; transition: background-color 0.3s; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        body.dark-mode header { background-color: rgba(34, 34, 34, 0.85); }
-        .logo { font-size: 1.5em; font-weight: 800; color: var(--primary-color); display: flex; align-items: center; }
-        .logo i { margin-right: 10px; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: white; padding: 8px; border-radius: 8px; font-size: 0.8em;}
-        nav { display: flex; align-items: center; }
-        nav ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; }
-        nav ul li { margin-left: 20px; }
-        nav ul li a { text-decoration: none; color: var(--text-main); font-weight: 600; transition: color 0.3s; font-size: 0.95em;}
-        nav ul li a:hover { color: var(--primary-color); }
-        .header-controls { display: flex; align-items: center; margin-left: 20px; }
-        .icon-btn { background: none; border: none; color: var(--text-main); font-size: 1.2em; cursor: pointer; margin-left: 10px; transition: color 0.3s; padding: 5px; }
-        .icon-btn:hover { color: var(--primary-color); transform: scale(1.1); }
-
-        .hero { text-align: center; padding: 80px 20px 40px; background-color: var(--bg-body); }
-        .hero h1 { font-size: 3.5em; margin-bottom: 20px; line-height: 1.2; }
-        .hero p { font-size: 1.2em; max-width: 700px; margin: 0 auto 40px; }
-        .hero-buttons .btn { margin: 10px; width: 200px; }
-        .hero-image { width: 100%; max-height: 450px; object-fit: cover; border-radius: var(--card-radius); margin-top: 50px; box-shadow: var(--shadow); }
-
-        /* Efeito de Digitação (Typing Effect) */
-        .typing-text { background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
-        .cursor { display: inline-block; width: 4px; height: 1em; background-color: var(--primary-color); margin-left: 5px; animation: blink 0.8s infinite; vertical-align: bottom; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-        .split-layout { display: flex; gap: 30px; margin-top: 40px; flex-wrap: wrap; align-items: stretch; }
-        .split-card { flex: 1; min-width: 320px; background: var(--bg-card); padding: 40px; border-radius: var(--card-radius); box-shadow: var(--shadow); transition: transform 0.3s; }
-        .why-us-card { background-color: #f0fdf4; border: 1px solid #dcfce7; } 
-        body.dark-mode .why-us-card { background-color: #132a1c; border-color: #1f422f; }
-        .card-list { list-style: none; padding: 0; }
-        .card-list li { margin-bottom: 15px; display: flex; align-items: center; font-size: 1em; }
-        .card-list li i { color: var(--secondary-color); margin-right: 12px; font-size: 1.1em; }
-
-        .services-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; margin-top: 40px; }
-        .service-card { flex: 1; min-width: 250px; background-color: var(--bg-card); padding: 40px 30px; border-radius: var(--card-radius); box-shadow: var(--shadow); transition: all 0.3s; text-align: left; border: 1px solid transparent; }
-        .service-card:hover { transform: translateY(-10px); border-color: var(--primary-color); }
-        .icon-circle { width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.5em; margin-bottom: 25px; color: white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .bg-blue { background-color: #007bff; }
-        .bg-green { background-color: #28a745; }
-        .bg-purple { background-color: #a200ff; }
-        .bg-orange { background-color: #fd7e14; }
-        .service-card ul { list-style: none; padding: 0; margin-top: 25px; }
-        .service-card li { margin-bottom: 12px; font-size: 0.95em; color: var(--text-muted); display: flex; align-items: flex-start; }
-        .service-card li::before { content: "•"; color: #28a745; margin-right: 10px; font-size: 1.5em; line-height: 1; }
-
-        .remote-support { background: linear-gradient(135deg, #007bff, #0056b3); border-radius: var(--card-radius); margin: 80px auto; padding: 0; display: flex; align-items: stretch; flex-wrap: wrap; overflow: hidden; box-shadow: var(--shadow); }
-        .remote-info { flex: 2; min-width: 300px; padding: 50px; color: white; }
-        .remote-info h2 { color: white; text-align: left; font-size: 2.5em; margin-top: 0; }
-        .remote-info p { color: #e0f0ff; font-size: 1.1em; }
-        .remote-action { flex: 1; min-width: 250px; background-color: rgba(0,0,0,0.1); padding: 50px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .anydesk-icon { font-size: 5em; color: #ff4757; margin-bottom: 20px; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2)); }
-        .remote-action h3 { color: white; margin-bottom: 25px; font-size: 1.3em;}
-        .btn-green-dl { background-color: #28a745; color: white; border-radius: 8px; width: 100%; padding: 15px; font-size: 1.1em; font-weight: bold; }
-        .btn-green-dl:hover { background-color: #218838; box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4); }
-
-        .offer-wrapper { max-width: 500px; margin: 40px auto; border-radius: 22px; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); padding: 4px; box-shadow: var(--shadow); transition: transform 0.3s; }
-        .offer-wrapper:hover { transform: scale(1.02); }
-        .offer-card { background-color: var(--bg-card); border-radius: 18px; padding: 50px 40px; text-align: center; height: 100%; box-sizing: border-box; }
-        .offer-price { font-size: 3.5em; color: var(--primary-color); font-weight: 800; margin: 15px 0 25px; }
+        /* Header Adaptável */
+        header { 
+            background-color: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(10px); 
+            padding: 10px 5%; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        body.dark-mode header { background-color: rgba(34, 34, 34, 0.95); }
         
-        .faq-container { max-width: 800px; margin: 40px auto; }
-        .faq-item { margin-bottom: 15px; background: var(--bg-card); border-radius: 12px; box-shadow: var(--shadow); border: 1px solid transparent; transition: all 0.3s; }
-        .faq-item:hover { border-color: var(--primary-color); }
-        .faq-question { padding: 20px 25px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-weight: 600; color: var(--text-main); font-size: 1.05em; }
-        .faq-icon { font-size: 0.9em; color: var(--primary-color); transition: transform 0.3s; }
-        .faq-question.active .faq-icon { transform: rotate(180deg); }
-        .faq-answer { padding: 0 25px 0 25px; max-height: 0; overflow: hidden; transition: all 0.3s ease-out; color: var(--text-muted); }
-        .faq-answer.active { padding-bottom: 25px; max-height: 300px; }
+        .logo { font-size: 1.3em; font-weight: 800; color: var(--primary-color); margin-bottom: 10px; }
+        nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+        nav ul li a { text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 0.85em; }
 
-        .contact-item { display: flex; align-items: center; margin-bottom: 30px; }
-        .contact-item-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; justify-content: center; align-items: center; color: white; margin-right: 20px; font-size: 1.3em; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-size: 0.95em; font-weight: 600; }
-        .form-group label span { color: #ff4757; }
-        .form-group input, .form-group textarea { width: 100%; padding: 15px; border: 2px solid var(--border-color); border-radius: 10px; font-family: inherit; box-sizing: border-box; background-color: var(--bg-body); color: var(--text-main); outline: none; transition: border-color 0.3s; }
-        .form-group input:focus, .form-group textarea:focus { border-color: var(--primary-color); background-color: var(--bg-card); }
+        .header-controls { margin-top: 10px; display: flex; gap: 10px; }
+        .icon-btn { background: none; border: none; font-size: 1.2em; cursor: pointer; color: var(--text-main); }
 
-        /* Mapa Embutido */
-        .map-container { border-radius: var(--card-radius); overflow: hidden; margin-top: 40px; box-shadow: var(--shadow); height: 350px; border: 4px solid var(--bg-card); }
-        .map-container iframe { width: 100%; height: 100%; border: 0; }
+        /* Hero Mobile-First */
+        .hero { text-align: center; padding: 40px 10px; }
+        .hero h1 { font-size: 2em; margin-bottom: 15px; }
+        .hero p { font-size: 1em; padding: 0 10px; }
+        .hero-buttons { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+        .btn { width: 100%; max-width: 280px; padding: 15px; border-radius: 10px; font-weight: bold; text-decoration: none; text-align: center; }
+        .btn-primary { background: var(--primary-color); color: #fff; }
+        .btn-outline { border: 2px solid var(--primary-color); color: var(--primary-color); }
+        .hero-image { width: 100%; border-radius: 15px; margin-top: 30px; }
 
-        .floating-buttons { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 1000; }
-        .float-btn { width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 26px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); text-decoration: none; border: none; cursor: pointer; position: relative; transition: transform 0.2s, box-shadow 0.2s; }
-        .float-btn:hover { transform: scale(1.1); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
-        .btn-chat { background: linear-gradient(135deg, var(--chat-color), #00d2ff); }
-        .btn-wpp { background: linear-gradient(135deg, var(--whatsapp-color), #1ebd5a); }
-        .notification-dot { position: absolute; top: 0; right: 0; background-color: #ff4757; width: 14px; height: 14px; border-radius: 50%; border: 2px solid white; }
+        /* Grids Responsivos */
+        .split-layout, .services-grid { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 20px; 
+            margin-top: 30px; 
+        }
 
-        .back-to-top { position: fixed; bottom: 30px; left: 30px; width: 50px; height: 50px; background-color: var(--text-muted); color: white; border: none; border-radius: 50%; font-size: 20px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 1000; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s ease; }
-        .back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
-        .back-to-top:hover { background-color: var(--primary-color); transform: translateY(-5px); }
+        .service-card, .split-card { 
+            background: var(--bg-card); 
+            padding: 25px; 
+            border-radius: var(--card-radius); 
+            box-shadow: var(--shadow); 
+        }
 
-        .cookie-banner { position: fixed; bottom: -100px; left: 0; width: 100%; background: var(--bg-card); box-shadow: 0 -2px 10px rgba(0,0,0,0.1); padding: 15px 20px; display: flex; justify-content: center; align-items: center; z-index: 9999; transition: bottom 0.5s; font-size: 0.9em; box-sizing: border-box; flex-wrap: wrap;}
-        .cookie-banner.show { bottom: 0; }
-        .cookie-banner p { margin: 0 20px 0 0; color: var(--text-main); text-align: center;}
-        .btn-cookie { background: var(--primary-color); color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 5px;}
-        .btn-cookie:hover { background-color: #0056b3; }
+        /* Remote Support Card */
+        .remote-support { 
+            background: linear-gradient(135deg, #007bff, #0056b3); 
+            border-radius: var(--card-radius); 
+            color: white; 
+            padding: 30px 20px; 
+            text-align: center;
+            margin: 40px 0;
+        }
+        .remote-info h2 { color: white; font-size: 1.5em; }
+        .btn-green-dl { background: #28a745; color: white; display: block; padding: 15px; border-radius: 10px; margin-top: 20px; text-decoration: none; }
 
-        /* Pop-up de Intenção de Saída */
-        .exit-popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); z-index: 100000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
-        .exit-popup-overlay.show { opacity: 1; visibility: visible; }
-        .exit-popup-content { background: var(--bg-card); padding: 40px; border-radius: 20px; max-width: 500px; text-align: center; position: relative; transform: scale(0.8); transition: all 0.3s ease; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
-        .exit-popup-overlay.show .exit-popup-content { transform: scale(1); }
-        .close-popup { position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 2em; color: var(--text-muted); cursor: pointer; }
-        .close-popup:hover { color: var(--primary-color); }
-        .exit-popup-content h2 { color: var(--primary-color); font-size: 2em; margin-bottom: 10px; margin-top: 0;}
-        .exit-popup-content p { font-size: 1.1em; margin-bottom: 25px; color: var(--text-main); }
-        .btn-pulse { animation: pulse 2s infinite; display: block;}
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+        /* Offer Card */
+        .offer-wrapper { margin: 30px auto; width: 100%; }
+        .offer-card { background: var(--bg-card); padding: 30px 20px; border-radius: var(--card-radius); border: 2px solid var(--primary-color); text-align: center; }
+        .offer-price { font-size: 2.5em; color: var(--primary-color); font-weight: bold; }
 
-        .chat-window { position: fixed; bottom: 100px; right: 90px; width: 340px; height: 450px; background: var(--chat-bg); border-radius: 15px; box-shadow: var(--shadow); display: flex; flex-direction: column; z-index: 999; overflow: hidden; transform: translateY(20px) scale(0.95); opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); }
-        .chat-window.active { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
-        .chat-header { background: linear-gradient(135deg, var(--chat-color), #00d2ff); color: white; padding: 15px 20px; display: flex; justify-content: space-between; font-weight: bold; align-items: center; }
-        .chat-body { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; background-color: var(--bg-body); }
-        .msg { max-width: 80%; padding: 12px 18px; border-radius: 18px; font-size: 0.95em; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .msg.bot { background-color: var(--chat-bg); color: var(--text-main); align-self: flex-start; border-bottom-left-radius: 4px; }
-        .msg.user { background: linear-gradient(135deg, var(--chat-msg-user), #00d2ff); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
-        .msg.typing { font-style: italic; color: var(--text-muted); background: transparent; box-shadow: none; padding: 0;}
-        .chat-footer { padding: 15px; border-top: 1px solid var(--border-color); display: flex; background-color: var(--chat-bg); }
-        .chat-footer input { flex: 1; padding: 12px; border: 2px solid var(--border-color); border-radius: 25px; outline: none; background: var(--bg-body); color: var(--text-main); margin-right: 10px; transition: border-color 0.3s; }
-        .chat-footer input:focus { border-color: var(--chat-color); }
-        .chat-footer button { background: linear-gradient(135deg, var(--chat-color), #00d2ff); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 1.1em; transition: transform 0.2s; }
-        .chat-footer button:hover { transform: scale(1.1); }
-        .quick-replies { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 5px; }
-        .quick-btn { background: var(--bg-body); border: 1px solid var(--chat-color); color: var(--chat-color); border-radius: 15px; padding: 8px 12px; font-size: 0.85em; cursor: pointer; transition: all 0.2s; font-weight: 600;}
-        .quick-btn:hover { background: var(--chat-color); color: white; }
+        /* Botões Flutuantes ajustados para Mobile */
+        .floating-buttons { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 999; }
+        .float-btn { width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .btn-wpp { background: var(--whatsapp-color); }
+        .btn-chat { background: var(--chat-color); }
+
+        /* FAQ */
+        .faq-item { background: var(--bg-card); margin-bottom: 10px; border-radius: 10px; overflow: hidden; }
+        .faq-question { padding: 15px; cursor: pointer; font-weight: bold; border-bottom: 1px solid var(--border-color); }
+        .faq-answer { padding: 0 15px; max-height: 0; overflow: hidden; transition: 0.3s; }
+        .faq-answer.active { padding: 15px; max-height: 200px; }
+
+        footer { text-align: center; padding: 20px; font-size: 0.8em; color: var(--text-muted); }
+
+        /* Media Queries para Tablets e Desktops */
+        @media (min-width: 768px) {
+            header { flex-direction: row; justify-content: space-between; padding: 15px 5%; }
+            .logo { margin-bottom: 0; }
+            nav ul { gap: 30px; }
+            .hero h1 { font-size: 3.5em; }
+            .hero-buttons { flex-direction: row; justify-content: center; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .split-layout { grid-template-columns: repeat(2, 1fr); }
+            .btn { width: 200px; }
+        }
+
+        @media (min-width: 1024px) {
+            .services-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        /* Efeito de Digitação */
+        .typing-text { color: var(--primary-color); font-weight: bold; border-right: 3px solid var(--primary-color); padding-right: 5px; animation: blink 0.7s infinite; }
+        @keyframes blink { 50% { border-color: transparent; } }
 
     </style>
 </head>
 <body>
 
-    <div id="preloader">
-        <div class="spinner"></div>
-    </div>
-
     <header>
         <div class="logo"><i class="fas fa-layer-group"></i> LeoTech Solutions</div>
         <nav>
             <ul>
-                <li><a href="#sobre" data-en="About Us">Sobre Nós</a></li>
-                <li><a href="#servicos" data-en="Services">Serviços</a></li>
-                <li><a href="#orcamentos" data-en="Pricing">Orçamentos</a></li>
-                <li><a href="#faq" data-en="FAQ">FAQ</a></li>
-                <li><a href="#contato" data-en="Contact">Contato</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#orcamentos">Preços</a></li>
+                <li><a href="#contato">Contato</a></li>
             </ul>
-            <div class="header-controls">
-                <button id="theme-toggle" class="icon-btn" title="Alternar Modo Escuro">🌙</button>
-                <button id="lang-toggle" class="icon-btn" title="Translate to English">🌐</button>
-            </div>
         </nav>
+        <div class="header-controls">
+            <button id="theme-toggle" class="icon-btn">🌙</button>
+        </div>
     </header>
 
-    <section class="hero reveal">
+    <section class="hero">
         <div class="container">
-            <h1>
-                <span data-en="IT Solutions for">Soluções em TI para</span> <br>
-                <span class="typing-text"></span><span class="cursor"></span>
-            </h1>
-            <p data-en="We transform technological challenges into growth opportunities for you and your company, with specialized IT services.">Transformamos desafios tecnológicos em oportunidades de crescimento para você e sua empresa, com serviços especializados em TI.</p>
+            <h1>TI para <br><span class="typing-text"></span></h1>
+            <p>Desde 2014 transformando tecnologia em facilidade para você e sua empresa.</p>
             <div class="hero-buttons">
-                <a href="#servicos" class="btn btn-primary" data-en="🚀 Our Services">🚀 Nossos Serviços</a>
-                <a href="https://wa.me/5511986039829?text=Olá,%20acessei%20o%20site%20da%20LeoTech%20e%20preciso%20de%20suporte%20técnico." class="btn btn-outline" target="_blank" data-en="💬 Contact Us">💬 Entre em Contato</a>
+                <a href="#servicos" class="btn btn-primary">Nossos Serviços</a>
+                <a href="https://wa.me/5511986039829" class="btn btn-outline">WhatsApp</a>
             </div>
-            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80" alt="Painel de TI" class="hero-image">
+            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80" alt="TI" class="hero-image">
         </div>
     </section>
 
-    <section id="sobre" class="section reveal" style="background-color: var(--bg-body);">
+    <section id="servicos" class="section">
         <div class="container">
-            <h2 data-en="About LeoTech Solutions">Sobre a LeoTech Solutions</h2>
-            <p class="text-center" style="max-width: 800px; margin: 0 auto 40px;" data-en="Since 2014, LeoTech Solutions has been the trusted IT partner. We are dedicated to offering custom solutions that meet specific needs.">Desde 2014, a LeoTech Solutions tem sido a parceira de confiança em TI. Somos dedicados a oferecer soluções personalizadas que atendem às necessidades específicas de cada cliente.</p>
-            
-            <div class="split-layout">
-                <div class="split-card">
-                    <h3 data-en="Our Mission">Nossa Missão</h3>
-                    <p data-en="Democratize access to technology by offering affordable and efficient IT solutions. We believe technology should make life easier and drive business growth.">Democratizar o acesso à tecnologia, oferecendo soluções de TI acessíveis e eficientes para usuários domésticos e pequenas empresas. Acreditamos que a tecnologia deve facilitar a vida e impulsionar o crescimento dos negócios.</p>
-                </div>
-                <div class="split-card why-us-card">
-                    <h3 data-en="Why choose LeoTech?">Por que escolher a LeoTech?</h3>
-                    <ul class="card-list">
-                        <li data-en="<i class='fas fa-check-circle'></i> Personalized and humanized service"><i class="fas fa-check-circle"></i> Atendimento personalizado e humanizado</li>
-                        <li data-en="<i class='fas fa-check-circle'></i> Fair and transparent pricing"><i class="fas fa-check-circle"></i> Preços justos e transparentes</li>
-                        <li data-en="<i class='fas fa-check-circle'></i> Proven market experience"><i class="fas fa-check-circle"></i> Experiência comprovada no mercado</li>
-                        <li data-en="<i class='fas fa-check-circle'></i> Continuous post-implementation support"><i class="fas fa-check-circle"></i> Suporte contínuo pós implementação</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="servicos" class="section reveal">
-        <div class="container">
-            <h2 data-en="Our Services">Nossos Serviços</h2>
-            <p class="text-center" data-en="We offer a wide range of IT services to meet all your technological needs.">Oferecemos uma ampla gama de serviços de TI para atender todas as suas necessidades tecnológicas.</p>
-            
+            <h2 style="text-align:center">Nossos Serviços</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="icon-circle bg-blue"><i class="fas fa-wrench"></i></div>
-                    <h3 data-en="Technical Support">Suporte Técnico</h3>
-                    <p data-en="Complete technical assistance for computers, laptops, and mobile devices, resolving hardware and software issues.">Assistência técnica completa para computadores, notebooks e dispositivos móveis, resolvendo problemas de hardware e software com agilidade.</p>
-                    <ul>
-                        <li data-en="Preventive and corrective maintenance">Manutenção preventiva e corretiva</li>
-                        <li data-en="Operating system installation">Instalação de sistemas operacionais</li>
-                        <li data-en="Virus and malware removal">Remoção de vírus e malware</li>
-                    </ul>
+                    <i class="fas fa-wrench" style="color:var(--primary-color); font-size: 2em;"></i>
+                    <h3>Suporte Técnico</h3>
+                    <p>Manutenção de computadores e notebooks com rapidez.</p>
                 </div>
                 <div class="service-card">
-                    <div class="icon-circle bg-green"><i class="fas fa-shield-alt"></i></div>
-                    <h3 data-en="Digital Security">Segurança Digital</h3>
-                    <p data-en="Robust protection against digital threats, implementing security solutions to safeguard your data and systems.">Proteção robusta contra ameaças digitais, com implementação de soluções de segurança para salvaguardar seus dados e sistemas.</p>
-                    <ul>
-                        <li data-en="Antivirus and firewall">Antivírus e firewall</li>
-                        <li data-en="Data backup and recovery">Backup e recuperação de dados</li>
-                    </ul>
+                    <i class="fas fa-network-wired" style="color:var(--secondary-color); font-size: 2em;"></i>
+                    <h3>Redes</h3>
+                    <p>Configuração de redes Wi-Fi e cabeadas corporativas.</p>
                 </div>
                 <div class="service-card">
-                    <div class="icon-circle bg-orange"><i class="fas fa-network-wired"></i></div>
-                    <h3 data-en="Networks & Infrastructure">Infraestrutura e Redes</h3>
-                    <p data-en="Configuration of local networks and mapped drives for companies, ensuring productivity and security.">Configuração de redes locais (Windows) e mapeamento de unidades de rede para empresas, garantindo trabalho integrado.</p>
-                    <ul>
-                        <li data-en="Setup of shared folders with access control (HR, Contracts, Finance)">Pastas compartilhadas com permissões de acesso (ex: RH, Contratos)</li>
-                        <li data-en="Resolution of loading issues on network drives">Resolução de problemas em unidades de rede</li>
-                    </ul>
+                    <i class="fas fa-shield-alt" style="color:#ff4757; font-size: 2em;"></i>
+                    <h3>Segurança</h3>
+                    <p>Remoção de vírus e backup seguro de dados.</p>
                 </div>
                 <div class="service-card">
-                    <div class="icon-circle bg-purple"><i class="fas fa-lightbulb"></i></div>
-                    <h3 data-en="IT Consulting">Consultoria em TI</h3>
-                    <p data-en="Expert guidance to optimize your technological resources, increase productivity, and drive your business growth.">Orientação especializada para otimizar seus recursos tecnológicos, aumentar a produtividade e impulsionar o crescimento do seu negócio.</p>
-                    <ul>
-                        <li data-en="Infrastructure analysis">Análise de infraestrutura</li>
-                        <li data-en="Technological planning">Planejamento tecnológico</li>
-                        <li data-en="Process optimization">Otimização de processos</li>
-                    </ul>
+                    <i class="fas fa-rocket" style="color:var(--chat-color); font-size: 2em;"></i>
+                    <h3>Consultoria</h3>
+                    <p>Melhoria de processos tecnológicos para empresas.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="container reveal">
+    <div class="container">
         <div class="remote-support">
-            <div class="remote-info">
-                <h2 data-en="Immediate Remote Support">Suporte Remoto Imediato</h2>
-                <p style="margin-bottom: 20px;" data-en="Need quick help? Many software issues, email configurations, and sluggishness can be resolved securely over the internet.">Precisa de ajuda rápida? Muitos problemas de software, configurações de e-mail e lentidão podem ser resolvidos de forma segura pela internet, sem a necessidade de aguardar uma visita técnica.</p>
-                <p data-en="Download AnyDesk to allow our secure and temporary connection.">Baixe o AnyDesk para permitir nossa conexão segura e temporária.</p>
-            </div>
-            <div class="remote-action">
-                <i class="fas fa-desktop anydesk-icon"></i>
-                <h3 data-en="Download AnyDesk">Baixar AnyDesk</h3>
-                <a href="https://anydesk.com/pt/downloads/windows" target="_blank" class="btn btn-green-dl" data-en="Download for Windows">Baixar para Windows</a>
-            </div>
+            <h2>Precisa de ajuda agora?</h2>
+            <p>Muitos problemas podem ser resolvidos por acesso remoto seguro.</p>
+            <a href="https://anydesk.com/pt/downloads/windows" class="btn-green-dl">Baixar AnyDesk</a>
         </div>
     </div>
 
-    <section id="orcamentos" class="section reveal">
+    <section id="orcamentos" class="section">
         <div class="container">
-            <h2 data-en="Pricing & Offers">Nossos Orçamentos</h2>
-            <p class="text-center" data-en="Discover our transparent and fair prices for main IT services.">Conheça nossos preços transparentes e justos para os principais serviços de TI.</p>
-            
             <div class="offer-wrapper">
                 <div class="offer-card">
-                    <h3 data-en="Installation and Activation">Instalação e Ativação</h3>
-                    <p data-en="Windows 10 Pro or 11 Pro + Office 365 Suite">Windows 10 Pro ou 11 Pro + Pacote Office 365</p>
+                    <h3>Pacote Formatação</h3>
+                    <p>Windows 10/11 Pro + Office 365</p>
                     <div class="offer-price">R$ 110,00</div>
-                    <ul class="card-list" style="text-align: left; display: inline-block; margin-bottom: 30px;">
-                        <li data-en="<i class='fas fa-check-circle'></i> Complete OS installation"><i class="fas fa-check-circle"></i> Instalação completa do sistema operacional</li>
-                        <li data-en="<i class='fas fa-check-circle'></i> Windows 10/11 Pro activation"><i class="fas fa-check-circle"></i> Ativação do Windows 10/11 Pro</li>
-                        <li data-en="<i class='fas fa-check-circle'></i> Office 365 Suite installation"><i class="fas fa-check-circle"></i> Instalação do Pacote Office 365</li>
-                        <li data-en="<i class='fas fa-check-circle'></i> Initial system configuration"><i class="fas fa-check-circle"></i> Configuração inicial do sistema</li>
-                        <li data-en="<i class='fas fa-check-circle'></i> Post-installation support"><i class="fas fa-check-circle"></i> Suporte pós-instalação</li>
-                    </ul>
-                    <a href="https://wa.me/5511986039829?text=Olá,%20LeoTech!%20Gostaria%20de%20agendar%20o%20pacote%20de%20Formatação%20de%20R$%20110,00." class="btn btn-gradient" target="_blank" data-en="Contact Us">Entre em Contato</a>
+                    <a href="https://wa.me/5511986039829" class="btn btn-primary" style="width:100%">Agendar Agora</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="faq" class="section reveal" style="background-color: var(--bg-body);">
-        <div class="container">
-            <h2 data-en="Frequently Asked Questions">Perguntas Frequentes</h2>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question"><span data-en="What is the response time for technical support?">Qual é o tempo de resposta para suporte técnico?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer"><p data-en="Our response is immediate via WhatsApp during business hours. For remote support, we start right away. For on-site visits, we schedule within 24 hours.">Nosso atendimento via WhatsApp é imediato em horário comercial. Para suporte remoto, iniciamos na mesma hora. Para visitas técnicas, agendamos em até 24 horas.</p></div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question"><span data-en="Do you offer on-site support?">Vocês atendem em domicílio?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer"><p data-en="Yes! We provide on-site technical visits at your home or company across São Paulo and the Metropolitan Region.">Sim! Realizamos visitas técnicas e atendemos a domicílio ou na sua empresa em toda São Paulo e Região Metropolitana.</p></div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question"><span data-en="How does service pricing work?">Como funciona o orçamento dos serviços?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer"><p data-en="Standard services like formatting have a fixed price (R$ 110.00). For others, we perform a technical analysis and provide a detailed quote before executing the service.">Serviços padronizados como formatação possuem valor fixo (R$ 110,00). Para outros problemas, realizamos uma análise técnica e passamos um orçamento detalhado antes de executar o serviço.</p></div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question"><span data-en="Do you offer a warranty on services?">Oferecem garantia nos serviços?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer"><p data-en="Yes, all our services include a warranty on technical labor and support if you face difficulties after installation.">Sim, todos os nossos serviços possuem garantia sobre a mão de obra técnica e suporte caso você tenha dificuldades após a instalação.</p></div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question"><span data-en="What payment methods do you accept?">Quais formas de pagamento vocês aceitam?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer"><p data-en="We accept cash, PIX, debit and credit cards. For higher value services, we offer interest-free installments.">Aceitamos pagamento em dinheiro, PIX, cartão de débito e crédito. Para serviços de maior valor, oferecemos parcelamento sem juros.</p></div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question"><span data-en="Do you work with companies of all sizes?">Vocês trabalham com empresas de todos os tamanhos?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer"><p data-en="Yes, we serve everyone from home users to small and medium-sized businesses. Our services are tailored to each type of client.">Sim, atendemos desde usuários domésticos até pequenas e médias empresas. Nossos serviços são adaptados para cada tipo de cliente.</p></div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question"><span data-en="Is it possible to schedule a technical visit?">É possível agendar uma visita técnica?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer"><p data-en="Sure! Contact us via WhatsApp or phone to schedule a technical visit. We will do a free assessment of your needs.">Claro! Entre em contato conosco via WhatsApp ou telefone para agendar uma visita técnica. Faremos uma avaliação gratuita das suas necessidades.</p></div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question"><span data-en="Do you offer software training?">Vocês oferecem treinamento para uso de softwares?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-answer"><p data-en="Yes, we offer basic training for using Windows and Office after installation. We can also provide guidance on digital security.">Sim, oferecemos treinamento básico para uso do Windows e Office após a instalação. Também podemos fornecer orientações sobre segurança digital.</p></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contato" class="section reveal">
-        <div class="container">
-            <h2 data-en="Get In Touch">Entre em Contato</h2>
-            
-            <div class="split-layout">
-                <div class="split-card">
-                    <h3 style="margin-bottom: 30px;" data-en="Contact Info">Informações de Contato</h3>
-                    <div class="contact-item">
-                        <div class="contact-item-icon bg-blue"><i class="fas fa-phone-alt"></i></div>
-                        <div><strong data-en="Phone/WhatsApp">Telefone/WhatsApp</strong><br><span style="color: var(--text-muted);">(11) 98603-9829</span></div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-item-icon bg-green"><i class="far fa-envelope"></i></div>
-                        <div><strong>E-mail</strong><br><span style="color: var(--text-muted);">contato@leotechsolutions.com.br</span></div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-item-icon bg-purple"><i class="fas fa-map-marker-alt"></i></div>
-                        <div><strong data-en="Service Area">Atendimento</strong><br><span style="color: var(--text-muted);" data-en="São Paulo and Metropolitan Region">São Paulo e Região Metropolitana</span></div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-item-icon bg-blue" style="background: linear-gradient(135deg, #ff4757, #ff6b81);"><i class="far fa-clock"></i></div>
-                        <div><strong data-en="Business Hours">Horário de Atendimento</strong><br><span style="color: var(--text-muted);" data-en="Mon-Fri: 08:00-18:00">Segunda à Sexta: 08:00 às 18:00</span></div>
-                    </div>
-                    <div class="contact-item" style="margin-bottom: 0;">
-                        <div class="contact-item-icon bg-blue" style="background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);"><i class="fab fa-instagram"></i></div>
-                        <div><strong>Instagram</strong><br><a href="https://www.instagram.com/lelecosantos25/" target="_blank" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">@lelecosantos25</a></div>
-                    </div>
-                </div>
-                
-                <div class="split-card">
-                    <h3 style="margin-bottom: 30px;" data-en="Send a Message">Solicite um Orçamento</h3>
-                    <form action="https://formspree.io/f/SEU_CODIGO_AQUI" method="POST">
-                        <div class="form-group">
-                            <input type="text" id="nome" name="nome" required placeholder="Digite seu nome completo">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="_replyto" required placeholder="seu@email.com">
-                        </div>
-                        <div class="form-group">
-                            <textarea id="mensagem" name="mensagem" rows="4" required placeholder="Descreva detalhadamente sua necessidade ou problema..."></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-submit" data-en="Send Message">Enviar Mensagem</button>
-                    </form>
-                </div>
-            </div>
-
-            <div class="map-container reveal">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235212.06203876043!2d-46.825126839352936!3d-23.545624151786524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce448183a461d1%3A0x9ba94b08ff335bae!2sS%C3%A3o%20Paulo%2C%20SP!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+    <section id="contato" class="section">
+        <div class="container" style="text-align:center">
+            <h2>Contato</h2>
+            <p><i class="fas fa-phone"></i> (11) 98603-9829</p>
+            <p><i class="fas fa-envelope"></i> contato@leotechsolutions.com.br</p>
         </div>
     </section>
 
     <footer>
-        <div class="container">
-            <p data-en="© 2026 LeoTech Solutions. All rights reserved.">© 2026 LeoTech Solutions. Todos os direitos reservados.</p>
-        </div>
+        <p>© 2026 LeoTech Solutions. Todos os direitos reservados.</p>
     </footer>
 
-    <div id="cookie-banner" class="cookie-banner">
-        <p data-en="We use cookies to ensure you get the best experience on our website.">Nós utilizamos cookies para garantir que você tenha a melhor experiência em nosso site.</p>
-        <button id="accept-cookies" class="btn-cookie" data-en="Accept">Entendi e Aceito</button>
-    </div>
-
-    <div id="exit-popup" class="exit-popup-overlay">
-        <div class="exit-popup-content">
-            <button id="close-popup" class="close-popup">×</button>
-            <h2>Espera aí! 🛑</h2>
-            <p>Está com problemas urgentes no computador ou na rede da sua empresa? Fale direto com um técnico agora mesmo e resolva rápido!</p>
-            <a href="https://wa.me/5511986039829?text=Olá,%20estava%20saindo%20do%20site%20mas%20decidi%20pedir%20ajuda!" target="_blank" class="btn btn-primary btn-pulse" style="background-color: var(--whatsapp-color); font-size: 1.2em; width: 100%; padding: 15px; border-radius: 10px; text-decoration: none; display: block; color: white;">Falar com Técnico no WhatsApp</a>
-        </div>
-    </div>
-
-    <button id="back-to-top" class="back-to-top" title="Voltar ao topo">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-
     <div class="floating-buttons">
-        <button class="float-btn btn-chat" id="open-chat">
-            <i class="fas fa-comment-dots"></i>
-            <span class="notification-dot"></span>
-        </button>
-        <a href="https://wa.me/5511986039829?text=Olá,%20estou%20no%20site%20da%20LeoTech%20e%20gostaria%20de%20tirar%20uma%20dúvida." class="float-btn btn-wpp" target="_blank">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-    </div>
-
-    <div class="chat-window" id="chat-window">
-        <div class="chat-header">
-            <span><i class="fas fa-robot"></i> Assistente LeoTech</span>
-            <button class="icon-btn" id="close-chat" style="color: white; margin: 0;"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="chat-body" id="chat-body">
-            <div class="msg bot" data-en="Hello! I am the LeoTech virtual assistant. How can I help you today?">Olá! Sou o assistente virtual da LeoTech. Como posso te ajudar hoje?</div>
-            <div class="quick-replies" id="quick-replies">
-                <button class="quick-btn" onclick="sendQuickReply('Qual o preço?')">💰 Preços</button>
-                <button class="quick-btn" onclick="sendQuickReply('Como funciona a formatação?')">💻 Formatação</button>
-                <button class="quick-btn" onclick="sendQuickReply('Preciso de suporte remoto')">🌐 Remoto</button>
-            </div>
-        </div>
-        <div class="chat-footer">
-            <input type="text" id="chat-input" placeholder="Pergunte algo...">
-            <button id="send-chat"><i class="fas fa-paper-plane"></i></button>
-        </div>
+        <a href="https://wa.me/5511986039829" class="float-btn btn-wpp"><i class="fab fa-whatsapp"></i></a>
     </div>
 
     <script>
-        // Lógica do Preloader (Carregamento)
-        window.addEventListener('load', () => {
-            setTimeout(() => { document.body.classList.add('loaded'); }, 500); 
-        });
+        // Efeito de Digitação
+        const textElement = document.querySelector('.typing-text');
+        const words = ["Você", "Sua Empresa", "Seu Negócio", "Seu Consultório"];
+        let wordIdx = 0; let charIdx = 0;
 
-        // Efeito de Digitação Turbinado com Tradução Integrada
-        const typingTextElement = document.querySelector('.typing-text');
-        const wordsPT = ["Você", "Sua Empresa", "Seu Consultório", "Seu Negócio"];
-        const wordsEN = ["You", "Your Company", "Your Clinic", "Your Business"];
-        let wordIndex = 0; let charIndex = 0; let isDeleting = false; let isEnglish = false; // Controle global de idioma
-
-        function typeEffect() {
-            const currentWords = isEnglish ? wordsEN : wordsPT;
-            const currentWord = currentWords[wordIndex % currentWords.length];
-            
-            if (isDeleting) {
-                typingTextElement.textContent = currentWord.substring(0, charIndex - 1);
-                charIndex--;
+        function type() {
+            if (charIdx < words[wordIdx].length) {
+                textElement.textContent += words[wordIdx].charAt(charIdx);
+                charIdx++;
+                setTimeout(type, 150);
             } else {
-                typingTextElement.textContent = currentWord.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let typingSpeed = isDeleting ? 50 : 100;
-            if (!isDeleting && charIndex === currentWord.length) {
-                typingSpeed = 2000; isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false; wordIndex++; typingSpeed = 500;
-            }
-            setTimeout(typeEffect, typingSpeed);
-        }
-        typeEffect();
-
-        // Lógica dos Cookies (LGPD)
-        const cookieBanner = document.getElementById('cookie-banner');
-        if (!localStorage.getItem('cookiesAccepted')) {
-            setTimeout(() => { cookieBanner.classList.add('show'); }, 2000);
-        }
-        document.getElementById('accept-cookies').addEventListener('click', () => {
-            localStorage.setItem('cookiesAccepted', 'true');
-            cookieBanner.classList.remove('show');
-        });
-
-        // Animação de Scroll Reveal
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                if (reveals[i].getBoundingClientRect().top < window.innerHeight - 100) {
-                    reveals[i].classList.add("active");
-                }
+                setTimeout(erase, 2000);
             }
         }
-        window.addEventListener("scroll", reveal); reveal(); 
 
-        // Botão Voltar ao Topo
-        const backToTopBtn = document.getElementById('back-to-top');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 400) backToTopBtn.classList.add('show');
-            else backToTopBtn.classList.remove('show');
-        });
-        backToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        function erase() {
+            if (charIdx > 0) {
+                textElement.textContent = words[wordIdx].substring(0, charIdx - 1);
+                charIdx--;
+                setTimeout(erase, 100);
+            } else {
+                wordIdx = (wordIdx + 1) % words.length;
+                setTimeout(type, 500);
+            }
+        }
+        type();
 
-        // FAQ (Acordeão)
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                document.querySelectorAll('.faq-question').forEach(q => {
-                    if (q !== question) { q.classList.remove('active'); q.nextElementSibling.classList.remove('active'); }
-                });
-                question.classList.toggle('active'); answer.classList.toggle('active');
-            });
-        });
-
-        // Modo Escuro
-        document.getElementById('theme-toggle').addEventListener('click', (e) => {
+        // Dark Mode
+        document.getElementById('theme-toggle').addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
-            e.target.innerHTML = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
         });
-
-        // Idioma e Tradução
-        document.getElementById('lang-toggle').addEventListener('click', (e) => {
-            isEnglish = !isEnglish;
-            document.querySelectorAll('[data-en]').forEach(el => {
-                if (!el.dataset.pt) el.dataset.pt = el.innerHTML;
-                el.innerHTML = isEnglish ? el.dataset.en : el.dataset.pt;
-            });
-            e.target.innerText = isEnglish ? "PT" : "🌐"; 
-        });
-
-        // Lógica do Pop-up de Intenção de Saída
-        const exitPopup = document.getElementById('exit-popup');
-        let popupShown = sessionStorage.getItem('exitPopupShown');
-        
-        document.addEventListener('mouseleave', (e) => {
-            if (e.clientY < 0 && !popupShown) {
-                exitPopup.classList.add('show');
-                sessionStorage.setItem('exitPopupShown', 'true');
-                popupShown = true;
-            }
-        });
-        document.getElementById('close-popup').addEventListener('click', () => exitPopup.classList.remove('show'));
-        window.addEventListener('click', (e) => { if(e.target === exitPopup) exitPopup.classList.remove('show'); });
-
-        // Lógica do Chatbot Independente
-        const openChatBtn = document.getElementById('open-chat');
-        const closeChatBtn = document.getElementById('close-chat');
-        const chatWindow = document.getElementById('chat-window');
-        const chatInput = document.getElementById('chat-input');
-        const sendChatBtn = document.getElementById('send-chat');
-        const chatBody = document.getElementById('chat-body');
-
-        openChatBtn.addEventListener('click', () => { chatWindow.classList.add('active'); openChatBtn.style.transform = 'scale(0)'; });
-        
-        closeChatBtn.addEventListener('click', () => { 
-            chatWindow.classList.remove('active'); openChatBtn.style.transform = 'scale(1)'; 
-            setTimeout(() => {
-                chatBody.innerHTML = `
-                    <div class="msg bot" data-en="Hello! I am the LeoTech virtual assistant. How can I help you today?">Olá! Sou o assistente virtual da LeoTech. Como posso te ajudar hoje?</div>
-                    <div class="quick-replies" id="quick-replies">
-                        <button class="quick-btn" onclick="sendQuickReply('Qual o preço?')">💰 Preços</button>
-                        <button class="quick-btn" onclick="sendQuickReply('Como funciona a formatação?')">💻 Formatação</button>
-                        <button class="quick-btn" onclick="sendQuickReply('Preciso de suporte remoto')">🌐 Remoto</button>
-                    </div>`;
-                if (isEnglish) {
-                    const welcomeMsg = chatBody.querySelector('.msg.bot');
-                    welcomeMsg.dataset.pt = welcomeMsg.innerHTML;
-                    welcomeMsg.innerHTML = welcomeMsg.dataset.en;
-                }
-            }, 300);
-        });
-
-        function appendMessage(text, classes, id = null) {
-            const msgDiv = document.createElement('div');
-            msgDiv.className = 'msg ' + classes; 
-            if (id) msgDiv.id = id;
-            msgDiv.innerText = text;
-            chatBody.appendChild(msgDiv);
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
-
-        function sendQuickReply(text) {
-            const qrDiv = document.getElementById('quick-replies');
-            if (qrDiv) qrDiv.style.display = 'none';
-            chatInput.value = text;
-            sendChatBtn.click();
-        }
-
-        function getBotResponse(input) {
-            const text = input.toLowerCase();
-            if (text.includes('orçamento') || text.includes('valor') || text.includes('preço') || text.includes('quanto') || text.includes('custa')) return "Nossos serviços padrão, como formatação, custam R$ 110,00. Para configuração de redes e empresas, fazemos um orçamento personalizado. Quer que eu te chame no WhatsApp?";
-            if (text.includes('formatação') || text.includes('formatar') || text.includes('windows') || text.includes('lento') || text.includes('vírus')) return "A formatação (R$ 110,00) inclui a instalação do Windows (10 ou 11 Pro), Pacote Office 365, antivírus e a configuração inicial. O computador fica novo! Deseja agendar?";
-            if (text.includes('rede') || text.includes('pasta') || text.includes('empresa') || text.includes('rh')) return "Somos especialistas em infraestrutura corporativa! Configuramos redes locais e pastas com controle de acesso rigoroso.";
-            if (text.includes('remoto') || text.includes('anydesk') || text.includes('distância')) return "Fazemos suporte remoto via AnyDesk para problemas rápidos! Você pode baixar o AnyDesk direto na nossa página. Quer iniciar um atendimento remoto agora?";
-            if (text.includes('contato') || text.includes('whatsapp') || text.includes('falar')) return "Você pode falar diretamente com a gente pelo WhatsApp: (11) 98603-9829. Só clicar no ícone verde no canto da tela!";
-            if (text.includes('olá') || text.includes('oi') || text.includes('bom dia')) return "Olá! Tudo bem? Como posso te ajudar hoje? Pode me perguntar sobre valores, formatação ou redes.";
-            return "Entendi. Como as necessidades variam bastante, o ideal é um técnico falar com você. Pode clicar no botão do WhatsApp ali embaixo para um atendimento humano rápido!";
-        }
-
-        sendChatBtn.addEventListener('click', () => {
-            const text = chatInput.value.trim();
-            if(!text) return;
-            const qrDiv = document.getElementById('quick-replies');
-            if (qrDiv) qrDiv.style.display = 'none';
-            appendMessage(text, 'user');
-            chatInput.value = '';
-            const typingId = "typing-" + Date.now();
-            appendMessage("Digitando...", 'bot typing', typingId);
-            setTimeout(() => {
-                document.getElementById(typingId).remove();
-                appendMessage(getBotResponse(text), 'bot');
-            }, 1000);
-        });
-
-        chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendChatBtn.click(); });
     </script>
 </body>
 </html>
