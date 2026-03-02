@@ -5,8 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
     
-    <meta name="description" content="LeoTech Solutions - Soluções completas em TI. Suporte técnico, formatação, redes corporativas e segurança digital em São Paulo.">
     <title>LeoTech Solutions - Soluções em TI</title>
+    <meta name="description" content="LeoTech Solutions - Soluções completas em TI. Suporte técnico, formatação, redes corporativas e segurança digital em São Paulo.">
+
+    <meta property="og:title" content="LeoTech Solutions - Especialistas em TI">
+    <meta property="og:description" content="Suporte técnico, redes e segurança. Desde 2014 acabando com a lentidão e garantindo a produtividade do seu negócio em SP. Fale com um técnico!">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80">
+    <meta property="og:url" content="https://lelecosantos25.github.io/leotech-site/">
+    <meta property="og:type" content="website">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -32,6 +39,10 @@
             --border-color: #333333;
             --shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
+
+        /* ANIMAÇÃO NO SCROLL */
+        .reveal { opacity: 0; transform: translateY(60px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
         /* Barra de Rolagem Customizada */
         ::-webkit-scrollbar { width: 10px; }
@@ -80,31 +91,21 @@
         /* Hero */
         .hero { padding: 60px 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 40px; }
         .hero-content { flex: 1; min-width: 300px; text-align: center; }
-        
-        /* AJUSTE DE FONTE PARA MOBILE - Levemente menor para acomodar palavras longas */
         .hero h1 { font-size: 2.3rem; line-height: 1.2; margin-bottom: 20px; }
         .hero p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px; }
-        
-        /* AQUI ESTÁ A CORREÇÃO: white-space: nowrap forçando o texto a ficar na mesma linha */
-        .typing-text { 
-            color: var(--primary-color); 
-            font-weight: 800; 
-            border-right: 3px solid var(--primary-color); 
-            animation: blink 0.8s infinite; 
-            white-space: nowrap; 
-        }
-        
+        .typing-text { color: var(--primary-color); font-weight: 800; border-right: 3px solid var(--primary-color); animation: blink 0.8s infinite; white-space: nowrap; }
         @keyframes blink { 50% { border-color: transparent; } }
         .hero-buttons { display: flex; flex-direction: column; gap: 15px; }
         .hero-image-container { flex: 1; min-width: 300px; }
         .hero-image { width: 100%; border-radius: var(--card-radius); box-shadow: var(--shadow); object-fit: cover; max-height: 450px; }
 
-        /* Grids Gerais */
+        /* Grids e Sobre */
         .grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
-        .card { background: var(--bg-card); padding: 30px; border-radius: var(--card-radius); box-shadow: var(--shadow); transition: 0.3s; border: 1px solid transparent; }
+        .about-grid { display: grid; grid-template-columns: 1fr; gap: 30px; align-items: center; }
+        .about-image { width: 100%; border-radius: var(--card-radius); box-shadow: var(--shadow); object-fit: cover; height: 100%; min-height: 350px; }
+        .about-text-content { display: flex; flex-direction: column; gap: 25px; }
+        .card { background: var(--bg-card); padding: 30px; border-radius: var(--card-radius); box-shadow: var(--shadow); transition: transform 0.3s, border-color 0.3s, background-color 0.3s; border: 1px solid transparent; }
         .card:hover { transform: translateY(-5px); border-color: var(--primary-color); }
-
-        /* POR QUE NÓS? - MODO ESCURO */
         .why-us-card { background-color: #f0fdf4; border-color: #dcfce7; }
         body.dark-mode .why-us-card { background-color: #112a1c; border-color: #1a3d28; }
 
@@ -114,12 +115,12 @@
         .service-list li { margin-bottom: 8px; font-size: 0.9rem; color: var(--text-muted); display: flex; align-items: flex-start; gap: 10px; }
         .service-list li::before { content: "•"; color: var(--primary-color); font-weight: bold; }
 
-        /* Remote Support */
-        .remote-banner { background: linear-gradient(135deg, #007bff, #0056b3); color: white; border-radius: var(--card-radius); padding: 40px 20px; text-align: center; box-shadow: var(--shadow); margin: 40px 0; }
+        /* Banner Suporte Remoto */
+        .remote-banner { background: linear-gradient(135deg, rgba(0, 123, 255, 0.85), rgba(0, 86, 179, 0.95)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat; color: white; border-radius: var(--card-radius); padding: 60px 20px; text-align: center; box-shadow: var(--shadow); margin: 40px 0; }
         .remote-banner h2 { color: white; margin-bottom: 15px; }
 
         /* Pricing */
-        .offer-wrapper { max-width: 500px; margin: 0 auto; border-radius: 22px; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); padding: 4px; box-shadow: var(--shadow); transition: 0.3s; }
+        .offer-wrapper { max-width: 500px; margin: 0 auto; border-radius: 22px; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); padding: 4px; box-shadow: var(--shadow); transition: transform 0.3s; }
         .offer-wrapper:hover { transform: scale(1.02); }
         .offer-card { background: var(--bg-card); border-radius: 18px; padding: 40px 30px; text-align: center; }
         .offer-price { font-size: 3rem; color: var(--primary-color); font-weight: 800; margin: 15px 0; }
@@ -146,11 +147,10 @@
         .map-container { border-radius: var(--card-radius); overflow: hidden; box-shadow: var(--shadow); height: 300px; border: 4px solid var(--bg-card); margin-top: 30px;}
         .map-container iframe { width: 100%; height: 100%; border: 0; }
 
-        /* Cookies LGPD */
+        /* Cookies & Popups */
         .cookie-banner { position: fixed; bottom: -150px; left: 0; width: 100%; background: var(--bg-card); box-shadow: 0 -2px 10px rgba(0,0,0,0.1); padding: 15px 20px; display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap; z-index: 9999; transition: bottom 0.5s; font-size: 0.9rem; text-align: center; }
         .cookie-banner.show { bottom: 0; }
 
-        /* Pop-up Saída */
         .exit-popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); z-index: 100000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: 0.3s; }
         .exit-popup-overlay.show { opacity: 1; visibility: visible; }
         .exit-popup-content { background: var(--bg-card); padding: 40px 20px; border-radius: 20px; max-width: 450px; width: 90%; text-align: center; position: relative; transform: scale(0.8); transition: 0.3s; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
@@ -188,13 +188,13 @@
         /* Responsividade Desktop */
         @media (min-width: 768px) {
             .hero-content { text-align: left; }
-            /* FONTE MAIOR NO DESKTOP, MAS EQUILIBRADA PARA NÃO QUEBRAR A LINHA */
             .hero h1 { font-size: 3.2rem; }
             .hero-buttons { flex-direction: row; }
+            .about-grid { grid-template-columns: 1fr 1fr; }
             .grid-2 { grid-template-columns: repeat(2, 1fr); }
             .grid-3 { grid-template-columns: repeat(3, 1fr); }
             .grid-4 { grid-template-columns: repeat(4, 1fr); }
-            .remote-banner { padding: 60px; }
+            .remote-banner { padding: 80px 40px; }
             .float-group { bottom: 30px; right: 30px; }
             .float-btn { width: 65px; height: 65px; font-size: 30px; }
             .chat-window { bottom: 110px; right: 30px; width: 350px; }
@@ -227,77 +227,77 @@
 
     <div class="container">
         <section class="hero">
-            <div class="hero-content">
+            <div class="hero-content reveal">
                 <h1><span data-en="IT Solutions for">Soluções em TI para</span> <br><span class="typing-text"></span></h1>
-                
                 <p data-en="Expert tech support, networks, and security since 2014.">Suporte especializado, redes e segurança. Desde 2014 acabando com a lentidão e garantindo a produtividade do seu negócio.</p>
                 <div class="hero-buttons">
-                    <a href="https://wa.me/5511986039829?text=Olá,%20preciso%20falar%20com%20um%20técnico!" target="_blank" class="btn btn-primary" data-en="Talk to an Expert Now">Falar com um Técnico Agora</a>
+                    <a href="https://wa.me/5511986039829?text=Olá!%20Acessei%20o%20site%20da%20LeoTech%20e%20preciso%20de%20suporte." target="_blank" class="btn btn-primary" data-en="Talk to an Expert Now">Falar com um Técnico Agora</a>
                     <a href="#servicos" class="btn btn-outline" data-en="View Services">Ver Serviços</a>
                 </div>
             </div>
-            <div class="hero-image-container">
+            <div class="hero-image-container reveal">
                 <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80" class="hero-image" alt="Tech">
             </div>
         </section>
 
         <section id="sobre" class="section">
-            <h2 data-en="About LeoTech" style="margin-bottom: 15px;">Sobre a LeoTech Solutions</h2>
-            
-            <p class="text-center" style="max-width: 800px; margin: 0 auto 40px; color: var(--text-muted); font-size: 1.1rem;" data-en="Since 2014, LeoTech Solutions has been your trusted IT partner. We are dedicated to offering customized solutions that meet the specific needs of each client.">Desde 2014, a LeoTech Solutions tem sido a parceira de confiança em TI. Somos dedicados a oferecer soluções personalizadas que atendem às necessidades específicas de cada cliente.</p>
+            <h2 class="reveal" data-en="About LeoTech" style="margin-bottom: 15px;">Sobre a LeoTech Solutions</h2>
+            <p class="text-center reveal" style="max-width: 800px; margin: 0 auto 50px; color: var(--text-muted); font-size: 1.1rem;" data-en="Since 2014, LeoTech Solutions has been your trusted IT partner. We are dedicated to offering customized solutions that meet the specific needs of each client.">Desde 2014, a LeoTech Solutions tem sido a parceira de confiança em TI. Somos dedicados a oferecer soluções personalizadas que atendem às necessidades específicas de cada cliente.</p>
 
-            <div class="grid grid-2">
-                <div class="card">
-                    <h3 data-en="Our Mission">Nossa Missão</h3>
-                    <p data-en="Democratize access to technology with affordable IT solutions.">Democratizar o acesso à tecnologia, oferecendo soluções de TI acessíveis e eficientes para usuários domésticos e pequenas empresas. Acreditamos que a tecnologia deve facilitar a vida.</p>
-                </div>
-                <div class="card why-us-card">
-                    <h3 data-en="Why choose us?">Por que escolher a LeoTech?</h3>
-                    <ul class="service-list">
-                        <li data-en="Personalized service">Atendimento personalizado e humanizado</li>
-                        <li data-en="Fair pricing">Preços justos e transparentes</li>
-                        <li data-en="10+ years experience">Mais de 10 anos de experiência</li>
-                        <li data-en="Post-service support">Suporte contínuo pós-implementação</li>
-                    </ul>
+            <div class="about-grid reveal">
+                <div><img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80" alt="Equipe" class="about-image"></div>
+                <div class="about-text-content">
+                    <div class="card" style="margin: 0;">
+                        <h3 data-en="Our Mission"><i class="fas fa-bullseye" style="color: var(--primary-color); margin-right: 8px;"></i> Nossa Missão</h3>
+                        <p data-en="Democratize access to technology with affordable IT solutions.">Democratizar o acesso à tecnologia, oferecendo soluções de TI acessíveis e eficientes para usuários domésticos e pequenas empresas.</p>
+                    </div>
+                    <div class="card why-us-card" style="margin: 0;">
+                        <h3 data-en="Why choose us?"><i class="fas fa-star" style="color: var(--secondary-color); margin-right: 8px;"></i> Por que escolher a LeoTech?</h3>
+                        <ul class="service-list">
+                            <li data-en="Personalized service">Atendimento personalizado e humanizado</li>
+                            <li data-en="Fair pricing">Preços justos e transparentes</li>
+                            <li data-en="10+ years experience">Mais de 10 anos de experiência</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="servicos" class="section">
-            <h2 data-en="Our Specialties">Nossas Especialidades</h2>
+            <h2 class="reveal" data-en="Our Specialties">Nossas Especialidades</h2>
             <div class="grid grid-4">
-                <div class="card">
+                <div class="card reveal">
                     <div class="icon-circle" style="background: #007bff;"><i class="fas fa-wrench"></i></div>
                     <h3 data-en="Tech Support">Suporte Técnico</h3>
                     <p data-en="Maintenance for PCs and Laptops.">Manutenção completa de computadores e notebooks. Resolução rápida de problemas de hardware e software.</p>
                 </div>
-                <div class="card">
+                <div class="card reveal">
                     <div class="icon-circle" style="background: #25D366;"><i class="fas fa-network-wired"></i></div>
                     <h3 data-en="Networks">Infraestrutura e Redes</h3>
-                    <p data-en="Local networks and folder sharing.">Configuração de redes locais, Wi-Fi e mapeamento de pastas seguras para setores corporativos (RH, Contratos).</p>
+                    <p data-en="Local networks and folder sharing.">Configuração de redes locais, Wi-Fi e mapeamento de pastas seguras para setores corporativos.</p>
                 </div>
-                <div class="card">
+                <div class="card reveal">
                     <div class="icon-circle" style="background: #fd7e14;"><i class="fas fa-shield-alt"></i></div>
                     <h3 data-en="Digital Security">Segurança Digital</h3>
-                    <p data-en="Virus removal and data backup.">Proteção robusta contra ameaças, remoção de vírus e implementação de rotinas de backup para salvar seus dados.</p>
+                    <p data-en="Virus removal and data backup.">Proteção robusta contra ameaças, remoção de vírus e implementação de rotinas de backup seguras.</p>
                 </div>
-                <div class="card">
+                <div class="card reveal">
                     <div class="icon-circle" style="background: #a200ff;"><i class="fas fa-lightbulb"></i></div>
                     <h3 data-en="IT Consulting">Consultoria em TI</h3>
-                    <p data-en="Technology planning for business.">Orientação especializada para otimizar seus recursos tecnológicos e impulsionar o crescimento do negócio.</p>
+                    <p data-en="Technology planning for business.">Orientação especializada para otimizar seus recursos tecnológicos e impulsionar o negócio.</p>
                 </div>
             </div>
 
-            <div class="remote-banner">
+            <div class="remote-banner reveal">
                 <h2 data-en="Need Immediate Remote Support?">Emergência? Suporte Remoto Imediato</h2>
-                <p style="font-size: 1.1rem; margin-bottom: 20px;" data-en="We fix software issues securely over the internet.">Muitos problemas (e-mail, lentidão, softwares parados) resolvemos conectando na sua máquina, sem você sair de casa.</p>
-                <a href="https://anydesk.com/pt/downloads/windows" target="_blank" class="btn btn-primary" style="background: #28a745; border:none;" data-en="Download AnyDesk">Baixar AnyDesk</a>
+                <p style="font-size: 1.1rem; margin-bottom: 25px; max-width: 700px; margin-inline: auto;" data-en="We fix software issues securely over the internet.">Muitos problemas resolvemos conectando na sua máquina de forma segura, sem você precisar sair de casa.</p>
+                <a href="https://anydesk.com/pt/downloads/windows" target="_blank" class="btn btn-primary" style="background: #28a745; border:none; padding: 18px 30px; font-size: 1.1rem;" data-en="Download AnyDesk"><i class="fas fa-download"></i> Baixar AnyDesk Agora</a>
             </div>
         </section>
 
         <section id="orcamentos" class="section">
-            <h2 data-en="Pricing & Offers">Nossos Orçamentos</h2>
-            <div class="offer-wrapper">
+            <h2 class="reveal" data-en="Pricing & Offers">Nossos Orçamentos</h2>
+            <div class="offer-wrapper reveal">
                 <div class="offer-card">
                     <h3 data-en="Installation and Activation">Instalação e Ativação</h3>
                     <p data-en="Windows 10/11 Pro + Office 365">Windows 10 Pro ou 11 Pro + Pacote Office 365</p>
@@ -309,52 +309,36 @@
                         <li data-en="Antivirus configuration"><i class="fas fa-check-circle"></i> Configuração de Antivírus</li>
                         <li data-en="Post-installation support"><i class="fas fa-check-circle"></i> Garantia e Suporte</li>
                     </ul>
-                    <a href="https://wa.me/5511986039829?text=Olá,%20gostaria%20de%20agendar%20a%20Formatação%20de%20R$%20110,00." class="btn btn-gradient" target="_blank" data-en="Schedule Now">Agendar Agora</a>
+                    <a href="https://wa.me/5511986039829?text=Olá!%20Vi%20no%20site%20o%20pacote%20de%20formatação%20por%20R$%20110%20e%20quero%20agendar." class="btn btn-gradient" target="_blank" data-en="Schedule Now">Agendar Agora</a>
                 </div>
             </div>
         </section>
 
         <section id="faq" class="section">
-            <h2 data-en="Frequently Asked Questions">Perguntas Frequentes</h2>
+            <h2 class="reveal" data-en="Frequently Asked Questions">Perguntas Frequentes</h2>
             <div style="max-width: 800px; margin: 0 auto;">
-                <div class="faq-item">
+                <div class="faq-item reveal">
                     <div class="faq-q"><span data-en="What is the response time?">Qual é o tempo de resposta para suporte?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
                     <div class="faq-a" data-en="Immediate via WhatsApp. Remote support starts instantly.">Atendimento imediato via WhatsApp. Suporte remoto iniciamos na mesma hora. Visitas técnicas em até 24 horas.</div>
                 </div>
-                <div class="faq-item">
+                <div class="faq-item reveal">
                     <div class="faq-q"><span data-en="Do you offer on-site support?">Vocês atendem em domicílio?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
                     <div class="faq-a" data-en="Yes, across São Paulo.">Sim! Realizamos visitas técnicas e atendemos a domicílio ou na sua empresa em toda São Paulo e Região Metropolitana.</div>
                 </div>
-                <div class="faq-item">
+                <div class="faq-item reveal">
                     <div class="faq-q"><span data-en="How does pricing work?">Como funciona o orçamento?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
                     <div class="faq-a" data-en="Fixed price for standard services (R$ 110).">Serviços padrões como formatação têm valor fixo (R$ 110). Para infraestrutura, fazemos análise e passamos orçamento detalhado.</div>
                 </div>
-                <div class="faq-item">
+                <div class="faq-item reveal">
                     <div class="faq-q"><span data-en="Is there a warranty?">Oferecem garantia nos serviços?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
                     <div class="faq-a" data-en="Yes, full technical warranty.">Sim, todos os nossos serviços possuem garantia total sobre a mão de obra técnica.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q"><span data-en="Payment methods?">Quais as formas de pagamento?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-a" data-en="PIX, Cash, and Credit Cards.">Aceitamos pagamento em dinheiro, PIX, cartão de débito e crédito (com parcelamento para serviços maiores).</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q"><span data-en="Do you work with small business?">Atendem pequenas empresas?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-a" data-en="Yes, both home users and businesses.">Sim, somos especialistas em estruturar TI para pequenas e médias empresas, além de usuários domésticos.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q"><span data-en="Can I schedule a visit?">É possível agendar uma visita?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-a" data-en="Sure, contact us via WhatsApp.">Claro! Basta chamar no WhatsApp e agendamos a melhor data para você.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q"><span data-en="Do you provide training?">Oferecem treinamento básico?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-a" data-en="Yes, basic OS guidance.">Sim, após instalações orientamos sobre o uso básico e boas práticas de segurança.</div>
                 </div>
             </div>
         </section>
 
         <section id="contato" class="section">
-            <h2 data-en="Get In Touch">Entre em Contato</h2>
-            <div class="grid grid-2">
+            <h2 class="reveal" data-en="Get In Touch">Entre em Contato</h2>
+            <div class="grid grid-2 reveal">
                 <div>
                     <div class="contact-item">
                         <div class="contact-icon" style="background: #007bff;"><i class="fas fa-phone-alt"></i></div>
@@ -367,10 +351,6 @@
                     <div class="contact-item">
                         <div class="contact-icon" style="background: #a200ff;"><i class="fas fa-map-marker-alt"></i></div>
                         <div><strong data-en="Service Area">Atendimento</strong><br><span style="color: var(--text-muted);" data-en="São Paulo and Region">São Paulo e Região Metropolitana</span></div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon" style="background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);"><i class="fab fa-instagram"></i></div>
-                        <div><strong>Instagram</strong><br><a href="https://www.instagram.com/lelecosantos25/" target="_blank" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">@lelecosantos25</a></div>
                     </div>
 
                     <div style="margin-top: 30px;">
@@ -407,7 +387,7 @@
             <button id="close-popup" class="close-popup">×</button>
             <h2 style="color: var(--primary-color); margin-bottom: 10px;">Espera aí! 🛑</h2>
             <p style="margin-bottom: 20px;">Problemas urgentes no PC ou na rede? Fale com um técnico agora mesmo e resolva rápido!</p>
-            <a href="https://wa.me/5511986039829" target="_blank" class="btn btn-primary pulse-btn" style="background: var(--whatsapp-color); display: block; width: 100%; border:none;">Falar no WhatsApp</a>
+            <a href="https://wa.me/5511986039829?text=Espera!%20Ainda%20preciso%20de%20ajuda!" target="_blank" class="btn btn-primary pulse-btn" style="background: var(--whatsapp-color); display: block; width: 100%; border:none;">Falar no WhatsApp</a>
         </div>
     </div>
 
@@ -415,17 +395,14 @@
 
     <div class="chat-window" id="chatWindow">
         <div class="chat-header">
-            <span><i class="fas fa-robot"></i> Assistente LeoTech</span>
-            <span style="cursor:pointer;" onclick="toggleChat()">✖</span>
-        </div>
-        <div class="chat-content" id="chatContent">
-            <div class="msg bot" data-en="Hello! How can I help you today?">Olá! Sou o assistente da LeoTech. Como posso agilizar seu atendimento hoje?</div>
-            <div class="quick-replies" id="quickReplies">
-                <button class="quick-btn" onclick="sendQuickReply('Qual o preço da formatação?')">💰 Ver Preços</button>
-                <button class="quick-btn" onclick="sendQuickReply('Preciso formatar meu PC')">💻 Formatar PC</button>
-                <button class="quick-btn" onclick="sendQuickReply('Preciso de suporte remoto')">🌐 Suporte Remoto</button>
+            <span><i class="fas fa-robot"></i> Assistente</span>
+            <div>
+                <span style="cursor:pointer; font-size: 0.85em; margin-right: 15px; background: rgba(0,0,0,0.2); padding: 5px 8px; border-radius: 8px;" onclick="resetChat()" title="Encerrar Conversa"><i class="fas fa-trash-alt"></i> Limpar</span>
+                <span style="cursor:pointer; font-size: 1.2em;" onclick="toggleChat()">✖</span>
             </div>
         </div>
+        <div class="chat-content" id="chatContent">
+            </div>
         <div class="chat-footer">
             <input type="text" id="chatInput" placeholder="Digite sua dúvida...">
             <button onclick="handleSend()"><i class="fas fa-paper-plane"></i></button>
@@ -434,19 +411,24 @@
 
     <div class="float-group">
         <button class="float-btn btn-chat-toggle" onclick="toggleChat()"><i class="fas fa-comments"></i></button>
-        <a href="https://wa.me/5511986039829?text=Olá,%20acessei%20o%20site%20e%20preciso%20de%20ajuda!" class="float-btn btn-wpp" target="_blank" title="WhatsApp Direto"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://wa.me/5511986039829?text=Olá!%20Estava%20navegando%20no%20site%20da%20LeoTech%20e%20gostaria%20de%20uma%20informação." class="float-btn btn-wpp" target="_blank" title="WhatsApp Direto"><i class="fab fa-whatsapp"></i></a>
     </div>
 
     <script>
         // Preloader
         window.addEventListener('load', () => setTimeout(() => document.body.classList.add('loaded'), 500));
 
+        // Animação Scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
         // Typing Effect
         const textElement = document.querySelector('.typing-text');
         const phrasesPT = ["Escritórios", "Sua Clínica", "Pequenas Empresas", "Seu Home Office"];
         const phrasesEN = ["Offices", "Your Clinic", "Small Businesses", "Your Home Office"];
-        let isEn = false;
-        let i = 0, j = 0, deleting = false;
+        let isEn = false; let i = 0, j = 0, deleting = false;
 
         function type() {
             const currentArr = isEn ? phrasesEN : phrasesPT;
@@ -477,37 +459,39 @@
 
         // Language Toggle
         document.getElementById('lang-toggle').addEventListener('click', (e) => {
-            isEn = !isEn;
-            e.target.innerText = isEn ? 'PT' : '🌐';
-            
+            isEn = !isEn; e.target.innerText = isEn ? 'PT' : '🌐';
             document.querySelectorAll('[data-en]').forEach(el => {
                 if (!el.dataset.pt) el.dataset.pt = el.innerHTML;
                 el.innerHTML = isEn ? el.dataset.en : el.dataset.pt;
             });
-            
             document.querySelectorAll('[data-en-placeholder]').forEach(el => {
                 if (!el.dataset.ptPlaceholder) el.dataset.ptPlaceholder = el.placeholder;
                 el.placeholder = isEn ? el.dataset.enPlaceholder : el.dataset.ptPlaceholder;
             });
-
-            // Reseta a digitação para começar a nova palavra imediatamente e evitar travamentos
-            j = 0;
-            deleting = false;
-            textElement.textContent = "";
+            j = 0; deleting = false; textElement.textContent = "";
         });
 
-        // Chatbot Logic
+        // ==========================
+        // LÓGICA DO CHATBOT MELHORADO
+        // ==========================
         const chatWindow = document.getElementById('chatWindow');
         const chatContent = document.getElementById('chatContent');
         const chatInput = document.getElementById('chatInput');
-        const quickReplies = document.getElementById('quickReplies');
+        let chatStarted = false; // Memória do chat
 
+        // O Toggle agora APENAS esconde ou mostra a janela (NÃO RESETA MAIS)
         function toggleChat() { 
             chatWindow.style.display = (chatWindow.style.display === 'flex') ? 'none' : 'flex'; 
-            if(chatWindow.style.display === 'none') resetChat(); 
+            if(chatWindow.style.display === 'flex' && !chatStarted) {
+                resetChat(); // Só reseta se for a primeira vez que abre
+            }
         }
 
+        // Função do botão de Lixeira para limpar a conversa
         function resetChat() {
+            chatStarted = true;
+            chatContent.innerHTML = ''; // Limpa tudo
+            
             setTimeout(() => {
                 const welcome = isEn ? "Hello! How can I help you today?" : "Olá! Sou o assistente da LeoTech. Como posso agilizar seu atendimento hoje?";
                 const b1 = isEn ? "Pricing" : "💰 Ver Preços";
@@ -521,48 +505,63 @@
                         <button class="quick-btn" onclick="sendQuickReply('${b2}')">${b2}</button>
                         <button class="quick-btn" onclick="sendQuickReply('${b3}')">${b3}</button>
                     </div>`;
-            }, 300);
+            }, 200);
         }
 
         function appendMsg(text, sender, html=false) {
-            const div = document.createElement('div');
-            div.className = `msg ${sender}`;
+            const div = document.createElement('div'); div.className = `msg ${sender}`;
             html ? div.innerHTML = text : div.innerText = text;
-            chatContent.appendChild(div);
-            chatContent.scrollTop = chatContent.scrollHeight;
+            chatContent.appendChild(div); chatContent.scrollTop = chatContent.scrollHeight;
         }
 
         function sendQuickReply(txt) {
             const qr = document.getElementById('quickReplies');
             if(qr) qr.style.display = 'none';
-            chatInput.value = txt;
-            handleSend();
+            chatInput.value = txt; handleSend();
         }
 
         function handleSend() {
-            const val = chatInput.value.trim();
-            if(!val) return;
-            const qr = document.getElementById('quickReplies');
-            if(qr) qr.style.display = 'none';
-            appendMsg(val, 'user');
-            chatInput.value = '';
+            const val = chatInput.value.trim(); if(!val) return;
+            const qr = document.getElementById('quickReplies'); if(qr) qr.style.display = 'none';
+            appendMsg(val, 'user'); chatInput.value = '';
             
-            const typingId = "typ" + Date.now();
-            appendMsg("...", 'bot', false);
+            const typingId = "typ" + Date.now(); 
+            appendMsg("...", 'bot', false); 
             chatContent.lastChild.id = typingId;
-
+            
             setTimeout(() => {
                 document.getElementById(typingId).remove();
-                const link = "<br><br>👉 <a href='https://wa.me/5511986039829' target='_blank' style='color:var(--primary-color);font-weight:bold;text-decoration:none;'><i class='fab fa-whatsapp'></i> WhatsApp</a>";
-                let resp = "Entendi! O ideal é eu analisar sua situação rapidinho para te dar a melhor solução." + link;
-                const lower = val.toLowerCase();
-                if(lower.includes('preço') || lower.includes('valor') || lower.includes('pricing')) resp = "A formatação completa custa R$ 110,00. Para redes, fazemos um orçamento personalizado!" + link;
-                if(lower.includes('formatar') || lower.includes('lento') || lower.includes('format')) resp = "Salvamos todos os seus arquivos, instalamos Windows e Office por apenas R$ 110,00." + link;
-                if(lower.includes('remoto') || lower.includes('remote')) resp = "Resolvemos muitos problemas na hora via AnyDesk, sem você sair de casa." + link;
+                const resp = getBotBrain(val);
                 appendMsg(resp, 'bot', true);
             }, 800);
         }
+
         chatInput.addEventListener('keypress', e => { if(e.key === 'Enter') handleSend(); });
+
+        // O NOVO CÉREBRO DO BOT
+        function getBotBrain(input) {
+            const lower = input.toLowerCase();
+            const link = "<br><br>👉 <a href='https://wa.me/5511986039829?text=Olá,%20estava%20falando%20com%20o%20assistente%20no%20site%20e%20preciso%20de%20ajuda.' target='_blank' style='color:var(--primary-color);font-weight:bold;text-decoration:none;'><i class='fab fa-whatsapp'></i> Chamar no WhatsApp</a>";
+            
+            if(lower.includes('preço') || lower.includes('valor') || lower.includes('orçamento') || lower.includes('quanto')) 
+                return "Temos um pacote de formatação completa (com backup, Windows e Office) por R$ 110,00. Para redes corporativas e servidores, montamos um orçamento sob medida para sua empresa!" + link;
+            if(lower.includes('formatar') || lower.includes('lento') || lower.includes('vírus') || lower.includes('travando') || lower.includes('pc')) 
+                return "Seu computador está travando? É nossa especialidade. Salvamos todos os seus arquivos, removemos vírus e deixamos a máquina rápida como nova por R$ 110,00." + link;
+            if(lower.includes('remoto') || lower.includes('anydesk') || lower.includes('distância')) 
+                return "Muitos problemas (como e-mail e falhas de software) resolvemos na hora via AnyDesk, sem você precisar sair de casa ou esperar uma visita técnica." + link;
+            if(lower.includes('rede') || lower.includes('wi-fi') || lower.includes('internet') || lower.includes('pasta') || lower.includes('empresa')) 
+                return "Somos especialistas em infraestrutura! Configuramos redes locais, melhoramos o sinal do seu Wi-Fi e criamos pastas compartilhadas seguras para sua equipe trabalhar conectada." + link;
+            if(lower.includes('pagamento') || lower.includes('cartão') || lower.includes('pix')) 
+                return "Aceitamos PIX, dinheiro e todos os cartões de crédito e débito (com opção de parcelamento para serviços maiores).";
+            if(lower.includes('bom dia') || lower.includes('boa tarde') || lower.includes('boa noite') || lower.includes('olá') || lower.includes('oi')) 
+                return "Olá! Tudo ótimo por aqui. Como posso ajudar com sua tecnologia hoje? Se preferir, pode me chamar direto no WhatsApp!" + link;
+            if(lower.includes('contato') || lower.includes('telefone') || lower.includes('número')) 
+                return "Nosso telefone e WhatsApp é (11) 98603-9829. Fique à vontade para mandar uma mensagem!" + link;
+
+            // Resposta Padrão
+            return "Entendi! Cada caso tem suas particularidades. O ideal é eu analisar sua situação rapidinho para te passar a melhor solução. Me chama aqui:" + link;
+        }
+        // ==========================
 
         // Scroll to Top & Exit Popup
         const btt = document.getElementById('back-to-top');
