@@ -16,6 +16,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+
     <style>
         :root {
             --primary-color: #007bff;
@@ -59,7 +61,7 @@
         @keyframes spin { 100% { transform: rotate(360deg); } }
         body.loaded #preloader { opacity: 0; visibility: hidden; }
 
-        .container { width: 90%; max-width: 1100px; margin: 0 auto; }
+        .container { width: 90%; max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
         .section { padding: 60px 0; }
         .text-center { text-align: center; }
         h2 { text-align: center; font-size: 2.2rem; margin-bottom: 40px; }
@@ -88,8 +90,11 @@
         .icon-btn { background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-main); transition: 0.3s; padding: 5px; }
         .icon-btn:hover { color: var(--primary-color); transform: scale(1.1); }
 
-        /* Hero */
-        .hero { padding: 60px 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 40px; }
+        /* Hero com Fundo de Partículas */
+        .hero-wrapper { position: relative; background-color: transparent; overflow: hidden; }
+        #particles-js { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1; pointer-events: auto; }
+        .hero { padding: 60px 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 40px; position: relative; z-index: 2; pointer-events: none; }
+        .hero-content, .hero-image-container { pointer-events: auto; }
         .hero-content { flex: 1; min-width: 300px; text-align: center; }
         .hero h1 { font-size: 2.3rem; line-height: 1.2; margin-bottom: 20px; }
         .hero p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px; }
@@ -104,13 +109,31 @@
         .about-grid { display: grid; grid-template-columns: 1fr; gap: 30px; align-items: center; }
         .about-image { width: 100%; border-radius: var(--card-radius); box-shadow: var(--shadow); object-fit: cover; height: 100%; min-height: 350px; }
         .about-text-content { display: flex; flex-direction: column; gap: 25px; }
-        .card { background: var(--bg-card); padding: 30px; border-radius: var(--card-radius); box-shadow: var(--shadow); transition: transform 0.3s, border-color 0.3s, background-color 0.3s; border: 1px solid transparent; }
-        .card:hover { transform: translateY(-5px); border-color: var(--primary-color); }
+        
+        /* O EFEITO TILT 3D NOS CARDS */
+        .card { 
+            background: var(--bg-card); 
+            padding: 30px; 
+            border-radius: var(--card-radius); 
+            box-shadow: var(--shadow); 
+            transition: border-color 0.3s, background-color 0.3s, box-shadow 0.3s; 
+            border: 1px solid transparent; 
+        }
+        .card:hover { border-color: var(--primary-color); }
+        
+        /* Profundidade 3D para os itens dentro do cartão (Pulando da tela) */
+        .tilt-card { transform-style: preserve-3d; height: 100%; cursor: pointer;}
+        .tilt-card .icon-circle { transform: translateZ(50px); }
+        .tilt-card h3 { transform: translateZ(30px); margin-bottom: 10px; }
+        .tilt-card p { transform: translateZ(20px); }
+        
         .why-us-card { background-color: #f0fdf4; border-color: #dcfce7; }
         body.dark-mode .why-us-card { background-color: #112a1c; border-color: #1a3d28; }
 
         /* Serviços */
-        .icon-circle { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: white; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .icon-circle { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: white; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: 0.3s; }
+        .tilt-card:hover .icon-circle { box-shadow: 0 10px 25px rgba(0,123,255,0.4); }
+        
         .service-list { list-style: none; margin-top: 15px; }
         .service-list li { margin-bottom: 8px; font-size: 0.9rem; color: var(--text-muted); display: flex; align-items: flex-start; gap: 10px; }
         .service-list li::before { content: "•"; color: var(--primary-color); font-weight: bold; }
@@ -225,21 +248,26 @@
         </div>
     </header>
 
-    <div class="container">
-        <section class="hero">
-            <div class="hero-content reveal">
-                <h1><span data-en="IT Solutions for">Soluções em TI para</span> <br><span class="typing-text"></span></h1>
-                <p data-en="Expert tech support, networks, and security since 2014.">Suporte especializado, redes e segurança. Desde 2014 acabando com a lentidão e garantindo a produtividade do seu negócio.</p>
-                <div class="hero-buttons">
-                    <a href="https://wa.me/5511986039829?text=Olá!%20Acessei%20o%20site%20da%20LeoTech%20e%20preciso%20de%20suporte." target="_blank" class="btn btn-primary" data-en="Talk to an Expert Now">Falar com um Técnico Agora</a>
-                    <a href="#servicos" class="btn btn-outline" data-en="View Services">Ver Serviços</a>
+    <div class="hero-wrapper">
+        <div id="particles-js"></div>
+        <div class="container">
+            <section class="hero">
+                <div class="hero-content reveal">
+                    <h1><span data-en="IT Solutions for">Soluções em TI para</span> <br><span class="typing-text"></span></h1>
+                    <p data-en="Expert tech support, networks, and security since 2014.">Suporte especializado, redes e segurança. Desde 2014 acabando com a lentidão e garantindo a produtividade do seu negócio.</p>
+                    <div class="hero-buttons">
+                        <a href="https://wa.me/5511986039829?text=Olá!%20Acessei%20o%20site%20da%20LeoTech%20e%20preciso%20de%20suporte." target="_blank" class="btn btn-primary" data-en="Talk to an Expert Now">Falar com um Técnico Agora</a>
+                        <a href="#servicos" class="btn btn-outline" data-en="View Services">Ver Serviços</a>
+                    </div>
                 </div>
-            </div>
-            <div class="hero-image-container reveal">
-                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80" class="hero-image" alt="Tech">
-            </div>
-        </section>
+                <div class="hero-image-container reveal">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80" class="hero-image" alt="Tech">
+                </div>
+            </section>
+        </div>
+    </div>
 
+    <div class="container">
         <section id="sobre" class="section">
             <h2 class="reveal" data-en="About LeoTech" style="margin-bottom: 15px;">Sobre a LeoTech Solutions</h2>
             <p class="text-center reveal" style="max-width: 800px; margin: 0 auto 50px; color: var(--text-muted); font-size: 1.1rem;" data-en="Since 2014, LeoTech Solutions has been your trusted IT partner. We are dedicated to offering customized solutions that meet the specific needs of each client.">Desde 2014, a LeoTech Solutions tem sido a parceira de confiança em TI. Somos dedicados a oferecer soluções personalizadas que atendem às necessidades específicas de cada cliente.</p>
@@ -266,26 +294,39 @@
         <section id="servicos" class="section">
             <h2 class="reveal" data-en="Our Specialties">Nossas Especialidades</h2>
             <div class="grid grid-4">
-                <div class="card reveal">
-                    <div class="icon-circle" style="background: #007bff;"><i class="fas fa-wrench"></i></div>
-                    <h3 data-en="Tech Support">Suporte Técnico</h3>
-                    <p data-en="Maintenance for PCs and Laptops.">Manutenção completa de computadores e notebooks. Resolução rápida de problemas de hardware e software.</p>
+                
+                <div class="reveal">
+                    <div class="card tilt-card">
+                        <div class="icon-circle" style="background: #007bff;"><i class="fas fa-wrench"></i></div>
+                        <h3 data-en="Tech Support">Suporte Técnico</h3>
+                        <p data-en="Maintenance for PCs and Laptops.">Manutenção completa de computadores e notebooks. Resolução rápida de problemas de hardware e software.</p>
+                    </div>
                 </div>
-                <div class="card reveal">
-                    <div class="icon-circle" style="background: #25D366;"><i class="fas fa-network-wired"></i></div>
-                    <h3 data-en="Networks">Infraestrutura e Redes</h3>
-                    <p data-en="Local networks and folder sharing.">Configuração de redes locais, Wi-Fi e mapeamento de pastas seguras para setores corporativos.</p>
+
+                <div class="reveal">
+                    <div class="card tilt-card">
+                        <div class="icon-circle" style="background: #25D366;"><i class="fas fa-network-wired"></i></div>
+                        <h3 data-en="Networks">Infraestrutura e Redes</h3>
+                        <p data-en="Local networks and folder sharing.">Configuração de redes locais, Wi-Fi e mapeamento de pastas seguras para setores corporativos.</p>
+                    </div>
                 </div>
-                <div class="card reveal">
-                    <div class="icon-circle" style="background: #fd7e14;"><i class="fas fa-shield-alt"></i></div>
-                    <h3 data-en="Digital Security">Segurança Digital</h3>
-                    <p data-en="Virus removal and data backup.">Proteção robusta contra ameaças, remoção de vírus e implementação de rotinas de backup seguras.</p>
+
+                <div class="reveal">
+                    <div class="card tilt-card">
+                        <div class="icon-circle" style="background: #fd7e14;"><i class="fas fa-shield-alt"></i></div>
+                        <h3 data-en="Digital Security">Segurança Digital</h3>
+                        <p data-en="Virus removal and data backup.">Proteção robusta contra ameaças, remoção de vírus e implementação de rotinas de backup seguras.</p>
+                    </div>
                 </div>
-                <div class="card reveal">
-                    <div class="icon-circle" style="background: #a200ff;"><i class="fas fa-lightbulb"></i></div>
-                    <h3 data-en="IT Consulting">Consultoria em TI</h3>
-                    <p data-en="Technology planning for business.">Orientação especializada para otimizar seus recursos tecnológicos e impulsionar o negócio.</p>
+
+                <div class="reveal">
+                    <div class="card tilt-card">
+                        <div class="icon-circle" style="background: #a200ff;"><i class="fas fa-lightbulb"></i></div>
+                        <h3 data-en="IT Consulting">Consultoria em TI</h3>
+                        <p data-en="Technology planning for business.">Orientação especializada para otimizar seus recursos tecnológicos e impulsionar o negócio.</p>
+                    </div>
                 </div>
+
             </div>
 
             <div class="remote-banner reveal">
@@ -401,8 +442,7 @@
                 <span style="cursor:pointer; font-size: 1.2em;" onclick="toggleChat()">✖</span>
             </div>
         </div>
-        <div class="chat-content" id="chatContent">
-            </div>
+        <div class="chat-content" id="chatContent"></div>
         <div class="chat-footer">
             <input type="text" id="chatInput" placeholder="Digite sua dúvida...">
             <button onclick="handleSend()"><i class="fas fa-paper-plane"></i></button>
@@ -414,7 +454,36 @@
         <a href="https://wa.me/5511986039829?text=Olá!%20Estava%20navegando%20no%20site%20da%20LeoTech%20e%20gostaria%20de%20uma%20informação." class="float-btn btn-wpp" target="_blank" title="WhatsApp Direto"><i class="fab fa-whatsapp"></i></a>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script>
+        // INICIALIZAÇÃO FORÇADA DO EFEITO 3D
+        VanillaTilt.init(document.querySelectorAll(".tilt-card"), {
+            max: 15,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.3,
+            scale: 1.05 // Dá um pequeno zoom no card ao passar o mouse
+        });
+
+        // CONFIGURAÇÃO DA REDE NEURAL (Particles.js)
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 50, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#007bff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": false },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#007bff", "opacity": 0.4, "width": 1 },
+                "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, "push": { "particles_nb": 4 } }
+            },
+            "retina_detect": true
+        });
+
         // Preloader
         window.addEventListener('load', () => setTimeout(() => document.body.classList.add('loaded'), 500));
 
@@ -471,33 +540,25 @@
             j = 0; deleting = false; textElement.textContent = "";
         });
 
-        // ==========================
-        // LÓGICA DO CHATBOT MELHORADO
-        // ==========================
+        // LÓGICA DO CHATBOT
         const chatWindow = document.getElementById('chatWindow');
         const chatContent = document.getElementById('chatContent');
         const chatInput = document.getElementById('chatInput');
-        let chatStarted = false; // Memória do chat
+        let chatStarted = false;
 
-        // O Toggle agora APENAS esconde ou mostra a janela (NÃO RESETA MAIS)
         function toggleChat() { 
             chatWindow.style.display = (chatWindow.style.display === 'flex') ? 'none' : 'flex'; 
-            if(chatWindow.style.display === 'flex' && !chatStarted) {
-                resetChat(); // Só reseta se for a primeira vez que abre
-            }
+            if(chatWindow.style.display === 'flex' && !chatStarted) { resetChat(); }
         }
 
-        // Função do botão de Lixeira para limpar a conversa
         function resetChat() {
             chatStarted = true;
-            chatContent.innerHTML = ''; // Limpa tudo
-            
+            chatContent.innerHTML = '';
             setTimeout(() => {
                 const welcome = isEn ? "Hello! How can I help you today?" : "Olá! Sou o assistente da LeoTech. Como posso agilizar seu atendimento hoje?";
                 const b1 = isEn ? "Pricing" : "💰 Ver Preços";
                 const b2 = isEn ? "Format PC" : "💻 Formatar PC";
                 const b3 = isEn ? "Remote Support" : "🌐 Suporte Remoto";
-                
                 chatContent.innerHTML = `
                     <div class="msg bot">${welcome}</div>
                     <div class="quick-replies" id="quickReplies">
@@ -514,21 +575,13 @@
             chatContent.appendChild(div); chatContent.scrollTop = chatContent.scrollHeight;
         }
 
-        function sendQuickReply(txt) {
-            const qr = document.getElementById('quickReplies');
-            if(qr) qr.style.display = 'none';
-            chatInput.value = txt; handleSend();
-        }
+        function sendQuickReply(txt) { document.getElementById('quickReplies').style.display = 'none'; chatInput.value = txt; handleSend(); }
 
         function handleSend() {
             const val = chatInput.value.trim(); if(!val) return;
             const qr = document.getElementById('quickReplies'); if(qr) qr.style.display = 'none';
             appendMsg(val, 'user'); chatInput.value = '';
-            
-            const typingId = "typ" + Date.now(); 
-            appendMsg("...", 'bot', false); 
-            chatContent.lastChild.id = typingId;
-            
+            const typingId = "typ" + Date.now(); appendMsg("...", 'bot', false); chatContent.lastChild.id = typingId;
             setTimeout(() => {
                 document.getElementById(typingId).remove();
                 const resp = getBotBrain(val);
@@ -538,30 +591,18 @@
 
         chatInput.addEventListener('keypress', e => { if(e.key === 'Enter') handleSend(); });
 
-        // O NOVO CÉREBRO DO BOT
         function getBotBrain(input) {
             const lower = input.toLowerCase();
             const link = "<br><br>👉 <a href='https://wa.me/5511986039829?text=Olá,%20estava%20falando%20com%20o%20assistente%20no%20site%20e%20preciso%20de%20ajuda.' target='_blank' style='color:var(--primary-color);font-weight:bold;text-decoration:none;'><i class='fab fa-whatsapp'></i> Chamar no WhatsApp</a>";
-            
-            if(lower.includes('preço') || lower.includes('valor') || lower.includes('orçamento') || lower.includes('quanto')) 
-                return "Temos um pacote de formatação completa (com backup, Windows e Office) por R$ 110,00. Para redes corporativas e servidores, montamos um orçamento sob medida para sua empresa!" + link;
-            if(lower.includes('formatar') || lower.includes('lento') || lower.includes('vírus') || lower.includes('travando') || lower.includes('pc')) 
-                return "Seu computador está travando? É nossa especialidade. Salvamos todos os seus arquivos, removemos vírus e deixamos a máquina rápida como nova por R$ 110,00." + link;
-            if(lower.includes('remoto') || lower.includes('anydesk') || lower.includes('distância')) 
-                return "Muitos problemas (como e-mail e falhas de software) resolvemos na hora via AnyDesk, sem você precisar sair de casa ou esperar uma visita técnica." + link;
-            if(lower.includes('rede') || lower.includes('wi-fi') || lower.includes('internet') || lower.includes('pasta') || lower.includes('empresa')) 
-                return "Somos especialistas em infraestrutura! Configuramos redes locais, melhoramos o sinal do seu Wi-Fi e criamos pastas compartilhadas seguras para sua equipe trabalhar conectada." + link;
-            if(lower.includes('pagamento') || lower.includes('cartão') || lower.includes('pix')) 
-                return "Aceitamos PIX, dinheiro e todos os cartões de crédito e débito (com opção de parcelamento para serviços maiores).";
-            if(lower.includes('bom dia') || lower.includes('boa tarde') || lower.includes('boa noite') || lower.includes('olá') || lower.includes('oi')) 
-                return "Olá! Tudo ótimo por aqui. Como posso ajudar com sua tecnologia hoje? Se preferir, pode me chamar direto no WhatsApp!" + link;
-            if(lower.includes('contato') || lower.includes('telefone') || lower.includes('número')) 
-                return "Nosso telefone e WhatsApp é (11) 98603-9829. Fique à vontade para mandar uma mensagem!" + link;
-
-            // Resposta Padrão
+            if(lower.includes('preço') || lower.includes('valor') || lower.includes('orçamento') || lower.includes('quanto')) return "Temos um pacote de formatação completa (com backup, Windows e Office) por R$ 110,00. Para redes corporativas e servidores, montamos um orçamento sob medida para sua empresa!" + link;
+            if(lower.includes('formatar') || lower.includes('lento') || lower.includes('vírus') || lower.includes('travando') || lower.includes('pc')) return "Seu computador está travando? É nossa especialidade. Salvamos todos os seus arquivos, removemos vírus e deixamos a máquina rápida como nova por R$ 110,00." + link;
+            if(lower.includes('remoto') || lower.includes('anydesk') || lower.includes('distância')) return "Muitos problemas (como e-mail e falhas de software) resolvemos na hora via AnyDesk, sem você precisar sair de casa ou esperar uma visita técnica." + link;
+            if(lower.includes('rede') || lower.includes('wi-fi') || lower.includes('internet') || lower.includes('pasta') || lower.includes('empresa')) return "Somos especialistas em infraestrutura! Configuramos redes locais, melhoramos o sinal do seu Wi-Fi e criamos pastas compartilhadas seguras para sua equipe trabalhar conectada." + link;
+            if(lower.includes('pagamento') || lower.includes('cartão') || lower.includes('pix')) return "Aceitamos PIX, dinheiro e todos os cartões de crédito e débito (com opção de parcelamento para serviços maiores).";
+            if(lower.includes('bom dia') || lower.includes('boa tarde') || lower.includes('boa noite') || lower.includes('olá') || lower.includes('oi')) return "Olá! Tudo ótimo por aqui. Como posso ajudar com sua tecnologia hoje? Se preferir, pode me chamar direto no WhatsApp!" + link;
+            if(lower.includes('contato') || lower.includes('telefone') || lower.includes('número')) return "Nosso telefone e WhatsApp é (11) 98603-9829. Fique à vontade para mandar uma mensagem!" + link;
             return "Entendi! Cada caso tem suas particularidades. O ideal é eu analisar sua situação rapidinho para te passar a melhor solução. Me chama aqui:" + link;
         }
-        // ==========================
 
         // Scroll to Top & Exit Popup
         const btt = document.getElementById('back-to-top');
