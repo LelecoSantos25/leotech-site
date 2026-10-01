@@ -103,6 +103,8 @@
         .menu-toggle { display: none; font-size: 1.4rem; width: 44px; height: 44px; }
         section[id] { scroll-margin-top: 80px; }
         .link-btn { background: none; border: none; color: var(--primary-color); font: inherit; font-weight: bold; cursor: pointer; text-decoration: underline; padding: 0; }
+        .form-success { background: #e8f9ef; color: #146c2e; border: 1px solid #b7ebc6; padding: 14px 16px; border-radius: 10px; margin-bottom: 15px; font-weight: 600; }
+        body.dark-mode .form-success { background: #12301e; color: #9be3b3; border-color: #1f5133; }
         .form-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 10px; }
 
         /* Menu e ajustes para celular */
@@ -459,10 +461,12 @@
 
                     <div style="margin-top: 30px;">
                         <h3 style="margin-bottom: 15px;" data-en="Send a Message">Enviar Mensagem</h3>
+                        <div id="form-success" class="form-success" role="status" hidden>✅ Mensagem enviada com sucesso! Responderemos em breve.</div>
                         <form action="https://formsubmit.co/eleonardorodrigues18@gmail.com" method="POST">
                             <input type="hidden" name="_subject" value="Nova mensagem pelo site LeoTech">
                             <input type="hidden" name="_template" value="table">
                             <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_next" value="https://lelecosantos25.github.io/leotech-site/?enviado=1#contato">
                             <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
                             <div class="form-group"><input type="text" name="nome" required autocomplete="name" aria-label="Seu nome" placeholder="Seu Nome" data-en-placeholder="Your Name"></div>
                             <div class="form-group"><input type="email" name="email" required autocomplete="email" aria-label="Seu e-mail" placeholder="Seu E-mail" data-en-placeholder="Your Email"></div>
@@ -740,6 +744,13 @@
         document.getElementById('close-privacy').addEventListener('click', closePrivacy);
         privacyModal.addEventListener('click', e => { if (e.target === privacyModal) closePrivacy(); });
         document.addEventListener('keydown', e => { if (e.key === 'Escape') { closePrivacy(); exitPopup.classList.remove('show'); } });
+
+        // Confirmação do formulário
+        if (new URLSearchParams(location.search).has('enviado')) {
+            const ok = document.getElementById('form-success'); ok.hidden = false;
+            setTimeout(() => document.getElementById('contato').scrollIntoView({behavior:'smooth'}), 700);
+            history.replaceState(null, '', location.pathname + '#contato');
+        }
 
         // Cookies
         const cookieBanner = document.getElementById('cookie-banner');
