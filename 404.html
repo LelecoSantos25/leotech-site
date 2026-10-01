@@ -35,12 +35,26 @@
             <span>Leo<span class="accent">Tech</span></span>
         </a>
         <div class="code">404</div>
-        <h1>Página não encontrada</h1>
-        <p>O endereço que você acessou não existe ou foi alterado. Mas se o seu computador está com problema, a gente resolve!</p>
+        <h1 id="t-title">Página não encontrada</h1>
+        <p id="t-text">O endereço que você acessou não existe ou foi alterado. Mas se o seu computador está com problema, a gente resolve!</p>
         <div class="actions">
-            <a href="/leotech-site/" class="btn btn-primary">Voltar para o site</a>
-            <a href="https://wa.me/5511986039829?text=Olá!%20Vim%20pelo%20site%20da%20LeoTech%20e%20preciso%20de%20ajuda." target="_blank" rel="noopener" class="btn btn-wpp">Falar no WhatsApp</a>
+            <a href="/leotech-site/" class="btn btn-primary" id="t-home">Voltar para o site</a>
+            <a href="https://wa.me/5511986039829?text=Olá!%20Vim%20pelo%20site%20da%20LeoTech%20e%20preciso%20de%20ajuda." target="_blank" rel="noopener" class="btn btn-wpp" id="t-wpp">Falar no WhatsApp</a>
         </div>
     </main>
+    <script>
+        (function () {
+            var l = null; try { l = localStorage.getItem('lang'); } catch (e) {}
+            if (!l) l = /^en/i.test(navigator.language || '') ? 'en' : 'pt';
+            if (l !== 'en') return;
+            document.documentElement.lang = 'en';
+            document.title = 'Page not found - LeoTech Solutions';
+            document.getElementById('t-title').textContent = 'Page not found';
+            document.getElementById('t-text').textContent = "The address you visited doesn't exist or has changed. But if your computer is acting up, we can fix it!";
+            document.getElementById('t-home').textContent = 'Back to the website';
+            var w = document.getElementById('t-wpp'); w.textContent = 'Chat on WhatsApp';
+            w.href = 'https://wa.me/5511986039829?text=' + encodeURIComponent('Hi! I came from the LeoTech website and I need help.');
+        })();
+    </script>
 </body>
 </html>
