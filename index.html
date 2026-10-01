@@ -3,17 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23007bff'/%3E%3Cstop offset='1' stop-color='%2300c389'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Cpath d='M20 16v32h22' fill='none' stroke='%23fff' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='44' cy='20' r='5' fill='%23fff'/%3E%3Cpath d='M44 25v9' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
     
     <title>LeoTech Solutions - Soluções em TI</title>
     <meta name="description" content="LeoTech Solutions - Soluções completas em TI. Suporte técnico, formatação, redes corporativas e segurança digital em São Paulo.">
 
     <meta property="og:title" content="LeoTech Solutions - Especialistas em TI">
     <meta property="og:description" content="Suporte técnico, redes e segurança. Desde 2014 acabando com a lentidão e garantindo a produtividade do seu negócio em SP. Fale com um técnico!">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80">
+    <meta property="og:image" content="https://lelecosantos25.github.io/leotech-site/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="LeoTech Solutions - Suporte técnico, redes e segurança em São Paulo">
+    <meta property="og:locale" content="pt_BR">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#007bff">
     <meta property="og:url" content="https://lelecosantos25.github.io/leotech-site/">
     <meta property="og:type" content="website">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
@@ -51,7 +60,9 @@
             left: 0; 
             z-index: 0; 
             pointer-events: auto; 
+            opacity: 0.8;
         }
+        body.dark-mode #particles-js { opacity: 0.55; }
 
         /* ANIMAÇÃO NO SCROLL */
         .reveal { opacity: 0; transform: translateY(60px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
@@ -64,17 +75,13 @@
         ::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; scroll-behavior: smooth; transition: 0.3s; overflow-x: hidden; }
+        body { font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif; background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; scroll-behavior: smooth; transition: 0.3s; overflow-x: hidden; }
         
-        /* Preloader */
-        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-body); z-index: 99999; display: flex; justify-content: center; align-items: center; transition: 0.5s; }
-        .spinner { width: 50px; height: 50px; border: 5px solid var(--border-color); border-top-color: var(--primary-color); border-radius: 50%; animation: spin 1s linear infinite; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-        body.loaded #preloader { opacity: 0; visibility: hidden; }
 
         .container { width: 90%; max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
         .section { padding: 60px 0; }
         .text-center { text-align: center; }
+        h1, h2, h3, .logo, .offer-price { font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif; }
         h2 { text-align: center; font-size: 2.2rem; margin-bottom: 40px; }
 
         /* Botões */
@@ -85,14 +92,16 @@
         .btn-outline:hover { background: var(--primary-color); color: white; transform: translateY(-3px); }
         .btn-gradient { background: linear-gradient(45deg, var(--primary-color), var(--chat-color)); color: white; width: 100%; }
         .btn-gradient:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,123,255,0.4); }
-        .btn-submit { background-color: #ff4757; color: white; width: 100%; margin-top: 10px; }
-        .btn-submit:hover { background-color: #e84118; transform: translateY(-3px); }
+        .btn-submit { background: linear-gradient(45deg, var(--primary-color), var(--chat-color)); color: white; width: 100%; margin-top: 10px; }
+        .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,123,255,0.4); }
 
         /* Header e Menu */
         header { background-color: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); padding: 15px 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: 0.3s; }
         body.dark-mode header { background-color: rgba(26, 26, 26, 0.85); }
         .header-inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px; }
-        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary-color); display: flex; align-items: center; gap: 8px; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 10px; text-decoration: none; letter-spacing: -0.5px; }
+        .logo-mark { width: 36px; height: 36px; flex-shrink: 0; filter: drop-shadow(0 4px 10px rgba(0,123,255,0.25)); }
+        .logo-accent { background: linear-gradient(90deg, var(--primary-color), #00c389); -webkit-background-clip: text; background-clip: text; color: transparent; }
         nav { flex-grow: 1; }
         nav ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; list-style: none; }
         nav a { text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 0.95rem; transition: 0.2s; }
@@ -131,6 +140,8 @@
             .map-container { height: 250px; }
             .chat-window { right: 10px; left: 10px; width: auto; max-width: none; bottom: 85px; }
             .cookie-banner { padding: 15px 90px 15px 15px; justify-content: flex-start; text-align: left; }
+            footer { padding-bottom: 100px; }
+            .footer-bottom { flex-direction: column; align-items: flex-start; }
         }
 
         /* Hero */
@@ -192,6 +203,13 @@
         .check-list li { margin-bottom: 10px; color: var(--text-muted); }
         .check-list i { color: var(--secondary-color); margin-right: 10px; }
 
+        .payment-info { margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border-color); }
+        .payment-title { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 10px; }
+        .payment-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 8px; }
+        .payment-badges span { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 20px; padding: 5px 12px; font-size: 0.85rem; color: var(--text-main); }
+        .payment-badges i { color: var(--primary-color); margin-right: 4px; }
+        .payment-info small { color: var(--text-muted); font-size: 0.8rem; }
+
         /* FAQ */
         .faq-item { background: var(--bg-card); margin-bottom: 15px; border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
         .faq-q { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: bold; border-bottom: 1px solid transparent; transition: 0.3s; }
@@ -252,7 +270,20 @@
         .quick-btn { background: var(--bg-body); border: 1px solid var(--chat-color); color: var(--chat-color); border-radius: 15px; padding: 6px 10px; font-size: 0.8rem; cursor: pointer; font-weight: bold; transition: 0.2s; }
         .quick-btn:hover { background: var(--chat-color); color: white; }
 
-        footer { position: relative; z-index: 2; text-align: center; padding: 30px 20px; border-top: 1px solid var(--border-color); font-size: 0.9rem; color: var(--text-muted); }
+        footer { position: relative; z-index: 2; background: var(--bg-card); padding: 50px 0 25px; border-top: 1px solid var(--border-color); font-size: 0.92rem; color: var(--text-muted); }
+        .footer-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
+        .footer-brand p { margin: 15px 0; max-width: 320px; }
+        footer h4 { font-family: 'Poppins', 'Segoe UI', sans-serif; color: var(--text-main); font-size: 1rem; margin-bottom: 12px; }
+        footer ul { list-style: none; }
+        footer li { margin-bottom: 8px; }
+        footer li i { color: var(--primary-color); width: 18px; }
+        footer a { color: var(--text-muted); text-decoration: none; transition: 0.2s; }
+        footer a:hover { color: var(--primary-color); }
+        footer .logo { font-size: 1.3rem; }
+        .footer-social { display: flex; gap: 10px; }
+        .footer-social a { width: 40px; height: 40px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: var(--bg-body); border: 1px solid var(--border-color); font-size: 1.1rem; }
+        .footer-social a:hover { background: var(--primary-color); color: #fff; border-color: var(--primary-color); }
+        .footer-bottom { margin-top: 35px; padding-top: 20px; border-top: 1px solid var(--border-color); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; font-size: 0.85rem; }
 
         /* Responsividade Desktop */
         @media (min-width: 768px) {
@@ -263,6 +294,7 @@
             .grid-2 { grid-template-columns: repeat(2, 1fr); }
             .grid-3 { grid-template-columns: repeat(3, 1fr); }
             .grid-4 { grid-template-columns: repeat(4, 1fr); }
+            .footer-grid { grid-template-columns: 1.6fr 1fr 1.4fr 1fr; }
             .remote-banner { padding: 80px 40px; }
             .float-group { bottom: 30px; right: 30px; }
             .float-btn { width: 65px; height: 65px; font-size: 30px; }
@@ -272,25 +304,29 @@
     </style>
 </head>
 <body>
+    <script>
+        (function () {
+            var t = null; try { t = localStorage.getItem('theme'); } catch (e) {}
+            if (t === 'dark' || (!t && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) document.body.classList.add('dark-mode');
+        })();
+    </script>
 
-    <div id="preloader"><div class="spinner"></div></div>
 
     <div id="particles-js"></div>
 
     <header>
         <div class="container header-inner">
-            <div class="logo"><i class="fas fa-layer-group"></i> LeoTech</div>
+            <a href="#" class="logo" aria-label="LeoTech Solutions - início"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#007bff"/><stop offset="1" stop-color="#00c389"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="url(#lg)"/><path d="M20 16v32h22" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="44" cy="20" r="5" fill="#fff"/><path d="M44 25v9" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg><span>Leo<span class="logo-accent">Tech</span></span></a>
             <nav id="main-nav" aria-label="Menu principal">
                 <ul>
-                    <li><a href="#sobre" data-en="About">Sobre</a></li>
-                    <li><a href="#servicos" data-en="Services">Serviços</a></li>
-                    <li><a href="#orcamentos" data-en="Pricing">Orçamentos</a></li>
-                    <li><a href="#faq" data-en="FAQ">FAQ</a></li>
-                    <li><a href="#contato" data-en="Contact">Contato</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#orcamentos">Orçamentos</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contato">Contato</a></li>
                 </ul>
             </nav>
             <div class="header-controls">
-                <button id="lang-toggle" class="icon-btn" title="Translate / Traduzir" aria-label="Mudar idioma para inglês">🌐</button>
                 <button id="theme-toggle" class="icon-btn" title="Modo escuro" aria-label="Ativar modo escuro">🌙</button>
                 <button id="menu-toggle" class="icon-btn menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="main-nav">☰</button>
             </div>
@@ -300,11 +336,11 @@
     <div class="container">
         <section class="hero">
             <div class="hero-content reveal">
-                <h1><span data-en="IT Solutions for">Soluções em TI para</span> <br><span class="typing-text"></span></h1>
-                <p data-en="Expert tech support, networks, and security since 2014.">Suporte especializado, redes e segurança. Desde 2014 acabando com a lentidão e garantindo a produtividade do seu negócio.</p>
+                <h1><span>Soluções em TI para</span> <br><span class="typing-text"></span></h1>
+                <p>Suporte especializado, redes e segurança. Desde 2014 acabando com a lentidão e garantindo a produtividade do seu negócio.</p>
                 <div class="hero-buttons">
-                    <a href="https://wa.me/5511986039829?text=Olá!%20Acessei%20o%20site%20da%20LeoTech%20e%20preciso%20de%20suporte." target="_blank" class="btn btn-primary" data-en="Talk to an Expert Now">Falar com um Técnico Agora</a>
-                    <a href="#servicos" class="btn btn-outline" data-en="View Services">Ver Serviços</a>
+                    <a href="https://wa.me/5511986039829?text=Olá!%20Acessei%20o%20site%20da%20LeoTech%20e%20preciso%20de%20suporte." target="_blank" class="btn btn-primary">Falar com um Técnico Agora</a>
+                    <a href="#servicos" class="btn btn-outline">Ver Serviços</a>
                 </div>
             </div>
             <div class="hero-image-container reveal">
@@ -313,22 +349,22 @@
         </section>
 
         <section id="sobre" class="section">
-            <h2 class="reveal" data-en="About LeoTech" style="margin-bottom: 15px;">Sobre a LeoTech Solutions</h2>
-            <p class="text-center reveal" style="max-width: 800px; margin: 0 auto 50px; color: var(--text-muted); font-size: 1.1rem;" data-en="Since 2014, LeoTech Solutions has been your trusted IT partner. We are dedicated to offering customized solutions that meet the specific needs of each client.">Desde 2014, a LeoTech Solutions tem sido a parceira de confiança em TI. Somos dedicados a oferecer soluções personalizadas que atendem às necessidades específicas de cada cliente.</p>
+            <h2 class="reveal" style="margin-bottom: 15px;">Sobre a LeoTech Solutions</h2>
+            <p class="text-center reveal" style="max-width: 800px; margin: 0 auto 50px; color: var(--text-muted); font-size: 1.1rem;">Desde 2014, a LeoTech Solutions tem sido a parceira de confiança em TI. Somos dedicados a oferecer soluções personalizadas que atendem às necessidades específicas de cada cliente.</p>
 
             <div class="about-grid reveal">
                 <div><img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80" alt="Profissional de TI trabalhando no computador" class="about-image" loading="lazy"></div>
                 <div class="about-text-content">
                     <div class="card" style="margin: 0;">
-                        <h3 data-en="Our Mission"><i class="fas fa-bullseye" style="color: var(--primary-color); margin-right: 8px;"></i> Nossa Missão</h3>
-                        <p data-en="Democratize access to technology with affordable IT solutions.">Democratizar o acesso à tecnologia, oferecendo soluções de TI acessíveis e eficientes para usuários domésticos e pequenas empresas.</p>
+                        <h3><i class="fas fa-bullseye" style="color: var(--primary-color); margin-right: 8px;"></i> Nossa Missão</h3>
+                        <p>Democratizar o acesso à tecnologia, oferecendo soluções de TI acessíveis e eficientes para usuários domésticos e pequenas empresas.</p>
                     </div>
                     <div class="card why-us-card" style="margin: 0;">
-                        <h3 data-en="Why choose us?"><i class="fas fa-star" style="color: var(--secondary-color); margin-right: 8px;"></i> Por que escolher a LeoTech?</h3>
+                        <h3><i class="fas fa-star" style="color: var(--secondary-color); margin-right: 8px;"></i> Por que escolher a LeoTech?</h3>
                         <ul class="service-list">
-                            <li data-en="Personalized service">Atendimento personalizado e humanizado</li>
-                            <li data-en="Fair pricing">Preços justos e transparentes</li>
-                            <li data-en="10+ years experience">Mais de 10 anos de experiência</li>
+                            <li>Atendimento personalizado e humanizado</li>
+                            <li>Preços justos e transparentes</li>
+                            <li>Mais de 10 anos de experiência</li>
                         </ul>
                     </div>
                 </div>
@@ -336,115 +372,130 @@
         </section>
 
         <section id="servicos" class="section">
-            <h2 class="reveal" data-en="Our Specialties">Nossas Especialidades</h2>
+            <h2 class="reveal">Nossas Especialidades</h2>
             <div class="grid grid-4">
                 
                 <div class="reveal">
                     <div class="card tilt-card">
                         <div class="icon-circle" style="background: #007bff;"><i class="fas fa-wrench"></i></div>
-                        <h3 data-en="Tech Support">Suporte Técnico</h3>
-                        <p data-en="Maintenance for PCs and Laptops.">Manutenção completa de computadores e notebooks. Resolução rápida de problemas de hardware e software.</p>
+                        <h3>Suporte Técnico</h3>
+                        <p>Manutenção completa de computadores e notebooks. Resolução rápida de problemas de hardware e software.</p>
                     </div>
                 </div>
 
                 <div class="reveal">
                     <div class="card tilt-card">
                         <div class="icon-circle" style="background: #25D366;"><i class="fas fa-network-wired"></i></div>
-                        <h3 data-en="Networks">Infraestrutura e Redes</h3>
-                        <p data-en="Local networks and folder sharing.">Configuração de redes locais, Wi-Fi e mapeamento de pastas seguras para setores corporativos.</p>
+                        <h3>Infraestrutura e Redes</h3>
+                        <p>Configuração de redes locais, Wi-Fi e mapeamento de pastas seguras para setores corporativos.</p>
                     </div>
                 </div>
 
                 <div class="reveal">
                     <div class="card tilt-card">
                         <div class="icon-circle" style="background: #fd7e14;"><i class="fas fa-shield-alt"></i></div>
-                        <h3 data-en="Digital Security">Segurança Digital</h3>
-                        <p data-en="Virus removal and data backup.">Proteção robusta contra ameaças, remoção de vírus e implementação de rotinas de backup seguras.</p>
+                        <h3>Segurança Digital</h3>
+                        <p>Proteção robusta contra ameaças, remoção de vírus e implementação de rotinas de backup seguras.</p>
                     </div>
                 </div>
 
                 <div class="reveal">
                     <div class="card tilt-card">
                         <div class="icon-circle" style="background: #a200ff;"><i class="fas fa-lightbulb"></i></div>
-                        <h3 data-en="IT Consulting">Consultoria em TI</h3>
-                        <p data-en="Technology planning for business.">Orientação especializada para otimizar seus recursos tecnológicos e impulsionar o negócio.</p>
+                        <h3>Consultoria em TI</h3>
+                        <p>Orientação especializada para otimizar seus recursos tecnológicos e impulsionar o negócio.</p>
                     </div>
                 </div>
 
             </div>
 
             <div class="remote-banner reveal">
-                <h2 data-en="Need Immediate Remote Support?">Emergência? Suporte Remoto Imediato</h2>
-                <p style="font-size: 1.1rem; margin-bottom: 25px; max-width: 700px; margin-inline: auto;" data-en="We fix software issues securely over the internet.">Muitos problemas resolvemos conectando na sua máquina de forma segura, sem você precisar sair de casa.</p>
-                <a href="https://anydesk.com/pt/downloads/windows" target="_blank" class="btn btn-primary" style="background: #28a745; border:none; padding: 18px 30px; font-size: 1.1rem;" data-en="Download AnyDesk"><i class="fas fa-download"></i> Baixar AnyDesk Agora</a>
+                <h2>Emergência? Suporte Remoto Imediato</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 25px; max-width: 700px; margin-inline: auto;">Muitos problemas resolvemos conectando na sua máquina de forma segura, sem você precisar sair de casa.</p>
+                <a href="https://anydesk.com/pt/downloads" target="_blank" rel="noopener" class="btn btn-primary" style="background: #28a745; border:none; padding: 18px 30px; font-size: 1.1rem;"><i class="fas fa-download" aria-hidden="true"></i> Baixar AnyDesk Agora</a>
+                <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.9;"><i class="fab fa-windows" aria-hidden="true"></i> <i class="fab fa-apple" aria-hidden="true"></i> <i class="fab fa-android" aria-hidden="true"></i> Disponível para Windows, Mac, Android e iPhone</p>
             </div>
         </section>
 
         <section id="orcamentos" class="section">
-            <h2 class="reveal" data-en="Pricing & Offers">Nossos Orçamentos</h2>
+            <h2 class="reveal">Nossos Orçamentos</h2>
             <div class="offer-wrapper reveal">
                 <div class="offer-card">
-                    <h3 data-en="Complete Formatting">Formatação Completa</h3>
-                    <p data-en="Backup + Windows 10/11 Pro + Office 365">Backup + Windows 10 Pro ou 11 Pro + Pacote Office 365</p>
+                    <h3>Formatação Completa</h3>
+                    <p>Backup + Windows 10 Pro ou 11 Pro + Pacote Office 365</p>
                     <div class="offer-price">R$ 110,00</div>
                     <ul class="check-list">
-                        <li data-en="Backup of your files"><i class="fas fa-check-circle"></i> Backup dos seus arquivos</li>
-                        <li data-en="Complete OS installation"><i class="fas fa-check-circle"></i> Instalação completa do sistema</li>
-                        <li data-en="Windows Activation"><i class="fas fa-check-circle"></i> Ativação do Windows Pro</li>
-                        <li data-en="Office 365 Suite"><i class="fas fa-check-circle"></i> Instalação do Pacote Office 365</li>
-                        <li data-en="Antivirus configuration"><i class="fas fa-check-circle"></i> Configuração de Antivírus</li>
-                        <li data-en="Post-installation support"><i class="fas fa-check-circle"></i> Garantia e Suporte</li>
+                        <li><i class="fas fa-check-circle"></i> Backup dos seus arquivos</li>
+                        <li><i class="fas fa-check-circle"></i> Instalação completa do sistema</li>
+                        <li><i class="fas fa-check-circle"></i> Ativação do Windows Pro</li>
+                        <li><i class="fas fa-check-circle"></i> Instalação do Pacote Office 365</li>
+                        <li><i class="fas fa-check-circle"></i> Configuração de Antivírus</li>
+                        <li><i class="fas fa-check-circle"></i> Garantia e Suporte</li>
                     </ul>
-                    <a href="https://wa.me/5511986039829?text=Olá!%20Vi%20no%20site%20o%20pacote%20de%20Formatação%20Completa%20por%20R$%20110%20e%20quero%20agendar." class="btn btn-gradient" target="_blank" data-en="Schedule Now">Agendar Agora</a>
+                    <a href="https://wa.me/5511986039829?text=Olá!%20Vi%20no%20site%20o%20pacote%20de%20Formatação%20Completa%20por%20R$%20110%20e%20quero%20agendar." class="btn btn-gradient" target="_blank">Agendar Agora</a>
+                    <div class="payment-info">
+                        <span class="payment-title">Formas de pagamento</span>
+                        <div class="payment-badges">
+                            <span><i class="fas fa-qrcode" aria-hidden="true"></i> PIX</span>
+                            <span><i class="fas fa-money-bill-wave" aria-hidden="true"></i> Dinheiro</span>
+                            <span><i class="far fa-credit-card" aria-hidden="true"></i> Débito</span>
+                            <span><i class="fas fa-credit-card" aria-hidden="true"></i> Crédito</span>
+                        </div>
+                        <small>Parcelamento no cartão disponível para serviços maiores.</small>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="faq" class="section">
-            <h2 class="reveal" data-en="Frequently Asked Questions">Perguntas Frequentes</h2>
+            <h2 class="reveal">Perguntas Frequentes</h2>
             <div style="max-width: 800px; margin: 0 auto;">
                 <div class="faq-item reveal">
-                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span data-en="What is the response time?">Qual é o tempo de resposta para suporte?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-a" data-en="Immediate via WhatsApp. Remote support starts instantly.">Atendimento imediato via WhatsApp. Suporte remoto iniciamos na mesma hora. Visitas técnicas em até 24 horas.</div>
+                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Qual é o tempo de resposta para suporte?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-a">Atendimento imediato via WhatsApp. Suporte remoto iniciamos na mesma hora. Visitas técnicas em até 24 horas.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span data-en="Do you offer on-site support?">Vocês atendem em domicílio?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-a" data-en="Yes, across São Paulo.">Sim! Realizamos visitas técnicas e atendemos a domicílio ou na sua empresa em toda São Paulo e Região Metropolitana.</div>
+                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Vocês atendem em domicílio?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-a">Sim! Realizamos visitas técnicas e atendemos a domicílio ou na sua empresa em toda São Paulo e Região Metropolitana.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span data-en="How does remote support work?">Como funciona o suporte remoto?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-a" data-en="By downloading AnyDesk, we securely access your machine while you watch everything.">Você baixa o programa AnyDesk e nos passa o código gerado. Nós acessamos sua máquina com segurança enquanto você acompanha tudo pela sua tela.</div>
+                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Como funciona o suporte remoto?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-a">Você baixa o programa AnyDesk e nos passa o código gerado. Nós acessamos sua máquina com segurança enquanto você acompanha tudo pela sua tela.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span data-en="Do you back up before formatting?">Vocês fazem backup antes de formatar?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-a" data-en="Yes! Saving your files and photos is our priority before any formatting.">Com certeza! Salvar seus arquivos, fotos e documentos importantes é a nossa prioridade número um antes de qualquer formatação.</div>
+                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Vocês fazem backup antes de formatar?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-a">Com certeza! Salvar seus arquivos, fotos e documentos importantes é a nossa prioridade número um antes de qualquer formatação.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span data-en="Do you serve businesses on weekends?">Atendem empresas aos finais de semana?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-a" data-en="Yes, we schedule services on weekends to avoid interrupting your business hours.">Sim, para urgências e projetos que não podem parar o seu negócio em horário comercial, agendamos aos sábados ou domingos.</div>
+                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Atendem empresas aos finais de semana?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-a">Sim, para urgências e projetos que não podem parar o seu negócio em horário comercial, agendamos aos sábados ou domingos.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span data-en="Do you sell computer parts?">Vendem peças de computador?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-a" data-en="We focus on services, but provide free consulting on where to buy the best parts.">Nosso foco é a prestação de serviços. Porém, oferecemos consultoria gratuita para indicar as melhores peças e sites de confiança para sua necessidade.</div>
+                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Vendem peças de computador?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-a">Nosso foco é a prestação de serviços. Porém, oferecemos consultoria gratuita para indicar as melhores peças e sites de confiança para sua necessidade.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span data-en="How does pricing work?">Como funciona o orçamento?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-a" data-en="Fixed price for standard services (R$ 110).">Serviços padrões como a Formatação Completa têm valor fixo (R$ 110). Para infraestrutura, fazemos análise e passamos orçamento detalhado.</div>
+                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Como funciona o orçamento?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-a">Serviços padrões como a Formatação Completa têm valor fixo (R$ 110). Para infraestrutura, fazemos análise e passamos orçamento detalhado.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span data-en="Is there a warranty?">Oferecem garantia nos serviços?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-a" data-en="Yes, full technical warranty.">Sim, todos os nossos serviços possuem garantia total sobre a mão de obra técnica.</div>
+                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Quais as formas de pagamento?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-a">Aceitamos PIX, dinheiro e cartões de débito e crédito. Para serviços maiores, como projetos de rede, é possível parcelar no cartão.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Oferecem garantia nos serviços?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-a">Sim, todos os nossos serviços possuem garantia total sobre a mão de obra técnica.</div>
                 </div>
             </div>
         </section>
 
         <section id="contato" class="section">
-            <h2 class="reveal" data-en="Get In Touch">Entre em Contato</h2>
+            <h2 class="reveal">Entre em Contato</h2>
             <div class="grid grid-2 reveal">
                 <div>
                     <div class="contact-item">
                         <div class="contact-icon" style="background: #007bff;"><i class="fas fa-phone-alt"></i></div>
-                        <div><strong data-en="Phone/WhatsApp">Telefone/WhatsApp</strong><br><span style="color: var(--text-muted);">(11) 98603-9829</span></div>
+                        <div><strong>Telefone/WhatsApp</strong><br><span style="color: var(--text-muted);">(11) 98603-9829</span></div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon" style="background: #28a745;"><i class="far fa-envelope"></i></div>
@@ -452,7 +503,7 @@
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon" style="background: #a200ff;"><i class="fas fa-map-marker-alt"></i></div>
-                        <div><strong data-en="Service Area">Atendimento</strong><br><span style="color: var(--text-muted);" data-en="São Paulo and Region">São Paulo e Região Metropolitana</span></div>
+                        <div><strong>Atendimento</strong><br><span style="color: var(--text-muted);">São Paulo e Região Metropolitana</span></div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon" style="background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);"><i class="fab fa-instagram"></i></div>
@@ -460,7 +511,7 @@
                     </div>
 
                     <div style="margin-top: 30px;">
-                        <h3 style="margin-bottom: 15px;" data-en="Send a Message">Enviar Mensagem</h3>
+                        <h3 style="margin-bottom: 15px;">Enviar Mensagem</h3>
                         <div id="form-success" class="form-success" role="status" hidden>✅ Mensagem enviada com sucesso! Responderemos em breve.</div>
                         <form action="https://formsubmit.co/eleonardorodrigues18@gmail.com" method="POST">
                             <input type="hidden" name="_subject" value="Nova mensagem pelo site LeoTech">
@@ -468,10 +519,10 @@
                             <input type="hidden" name="_captcha" value="false">
                             <input type="hidden" name="_next" value="https://lelecosantos25.github.io/leotech-site/?enviado=1#contato">
                             <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
-                            <div class="form-group"><input type="text" name="nome" required autocomplete="name" aria-label="Seu nome" placeholder="Seu Nome" data-en-placeholder="Your Name"></div>
-                            <div class="form-group"><input type="email" name="email" required autocomplete="email" aria-label="Seu e-mail" placeholder="Seu E-mail" data-en-placeholder="Your Email"></div>
-                            <div class="form-group"><textarea name="mensagem" rows="4" required aria-label="Sua mensagem" placeholder="Sua Mensagem..." data-en-placeholder="Your Message..."></textarea></div>
-                            <button type="submit" class="btn btn-submit" data-en="Send">Enviar Formulário</button>
+                            <div class="form-group"><input type="text" name="nome" required autocomplete="name" aria-label="Seu nome" placeholder="Seu Nome"></div>
+                            <div class="form-group"><input type="email" name="email" required autocomplete="email" aria-label="Seu e-mail" placeholder="Seu E-mail"></div>
+                            <div class="form-group"><textarea name="mensagem" rows="4" required aria-label="Sua mensagem" placeholder="Sua Mensagem..."></textarea></div>
+                            <button type="submit" class="btn btn-submit">Enviar Formulário</button>
                             <p class="form-note">Ao enviar, você concorda com a nossa <button type="button" class="link-btn open-privacy">Política de Privacidade</button>.</p>
                         </form>
                     </div>
@@ -486,14 +537,53 @@
 
     <footer>
         <div class="container">
-            <p data-en="© 2026 LeoTech Solutions. All rights reserved.">© 2026 LeoTech Solutions. Todos os direitos reservados.</p>
-            <p style="margin-top: 8px;"><button type="button" class="link-btn open-privacy">Política de Privacidade</button></p>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo" aria-label="LeoTech Solutions - início"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="lg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#007bff"/><stop offset="1" stop-color="#00c389"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="url(#lg2)"/><path d="M20 16v32h22" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="44" cy="20" r="5" fill="#fff"/><path d="M44 25v9" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg><span>Leo<span class="logo-accent">Tech</span></span></a>
+                    <p>Suporte técnico, redes e segurança digital para casas e pequenas empresas em São Paulo, desde 2014.</p>
+                    <div class="footer-social">
+                        <a href="https://wa.me/5511986039829" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/lelecosantos25/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        <a href="mailto:eleonardorodrigues18@gmail.com" aria-label="E-mail"><i class="far fa-envelope" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#servicos">Serviços</a></li>
+                        <li><a href="#orcamentos">Orçamentos</a></li>
+                        <li><a href="#faq">Perguntas Frequentes</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><i class="fab fa-whatsapp" aria-hidden="true"></i> <a href="https://wa.me/5511986039829" target="_blank" rel="noopener">(11) 98603-9829</a></li>
+                        <li><i class="far fa-envelope" aria-hidden="true"></i> <a href="mailto:eleonardorodrigues18@gmail.com" style="word-break: break-all;">eleonardorodrigues18@gmail.com</a></li>
+                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i> São Paulo e Região Metropolitana</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Pagamento</h4>
+                    <ul>
+                        <li><i class="fas fa-qrcode" aria-hidden="true"></i> PIX</li>
+                        <li><i class="fas fa-money-bill-wave" aria-hidden="true"></i> Dinheiro</li>
+                        <li><i class="far fa-credit-card" aria-hidden="true"></i> Débito e Crédito</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© <span id="year">2026</span> LeoTech Solutions. Todos os direitos reservados.</p>
+                <button type="button" class="link-btn open-privacy">Política de Privacidade</button>
+            </div>
         </div>
     </footer>
 
     <div id="cookie-banner" class="cookie-banner">
         <p>Usamos o armazenamento do navegador só para lembrar suas preferências. Saiba mais na <button type="button" class="link-btn open-privacy">Política de Privacidade</button>.</p>
-        <button id="accept-cookies" class="btn btn-primary" style="padding: 8px 15px; margin: 0;" data-en="Accept">Aceitar</button>
+        <button id="accept-cookies" class="btn btn-primary" style="padding: 8px 15px; margin: 0;">Aceitar</button>
     </div>
 
     <div id="exit-popup" class="exit-popup-overlay">
@@ -517,14 +607,14 @@
                 <li><strong>Formulário de contato:</strong> nome, e-mail e a mensagem que você escrever.</li>
                 <li><strong>WhatsApp:</strong> ao clicar nos botões, você é levado ao WhatsApp e a conversa segue as regras do próprio aplicativo.</li>
                 <li><strong>Assistente do site:</strong> as perguntas digitadas ficam só no seu navegador e não são enviadas nem guardadas por nós.</li>
-                <li><strong>Armazenamento do navegador:</strong> guardamos apenas se você aceitou o aviso e se o aviso de saída já apareceu. Não usamos cookies de publicidade nem de rastreamento.</li>
+                <li><strong>Armazenamento do navegador:</strong> guardamos apenas se você aceitou o aviso, se o aviso de saída já apareceu e se você prefere o modo claro ou escuro. Não usamos cookies de publicidade nem de rastreamento.</li>
             </ul>
             <h3>3. Para que usamos</h3>
             <p>Somente para responder seu contato, passar orçamentos e prestar o serviço solicitado. Não vendemos nem compartilhamos seus dados para fins de marketing.</p>
             <h3>4. Base legal</h3>
             <p>Tratamos seus dados com base no seu consentimento e na execução de procedimentos preliminares a um contrato solicitados por você (art. 7º, I e V, da LGPD).</p>
             <h3>5. Serviços de terceiros</h3>
-            <p>O site usa serviços externos que podem receber dados técnicos da sua visita (como o endereço IP): FormSubmit (envio do formulário por e-mail), Google Maps (mapa), Cloudflare CDN (ícones e scripts), Unsplash (imagens) e GitHub Pages (hospedagem). Cada um tem sua própria política de privacidade.</p>
+            <p>O site usa serviços externos que podem receber dados técnicos da sua visita (como o endereço IP): FormSubmit (envio do formulário por e-mail), Google Maps (mapa), Google Fonts (fontes), Cloudflare CDN (ícones e scripts), Unsplash (imagens) e GitHub Pages (hospedagem). Cada um tem sua própria política de privacidade.</p>
             <h3>6. Por quanto tempo guardamos</h3>
             <p>As mensagens são mantidas apenas pelo tempo necessário para o atendimento e eventuais garantias do serviço, e depois são apagadas.</p>
             <h3>7. Seus direitos</h3>
@@ -567,26 +657,25 @@
         });
 
         // PARTÍCULAS EM TELA CHEIA
-        if (window.particlesJS) particlesJS("particles-js", {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (window.particlesJS && !reduceMotion) particlesJS("particles-js", {
             "particles": {
-                "number": { "value": isMobile ? 35 : 90, "density": { "enable": true, "value_area": 800 } },
+                "number": { "value": isMobile ? 25 : 55, "density": { "enable": true, "value_area": 800 } },
                 "color": { "value": "#007bff" },
                 "shape": { "type": "circle" },
-                "opacity": { "value": 0.5, "random": false },
-                "size": { "value": 3, "random": true },
-                "line_linked": { "enable": true, "distance": 150, "color": "#007bff", "opacity": 0.4, "width": 1 },
-                "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+                "opacity": { "value": 0.35, "random": true },
+                "size": { "value": 2.5, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#007bff", "opacity": 0.15, "width": 1 },
+                "move": { "enable": true, "speed": 0.8, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
             },
             "interactivity": {
                 "detect_on": "canvas",
                 "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
-                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, "push": { "particles_nb": 4 } }
+                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.35 } }, "push": { "particles_nb": 2 } }
             },
             "retina_detect": true
         });
 
-        // Preloader
-        window.addEventListener('load', () => setTimeout(() => document.body.classList.add('loaded'), 500));
 
         // Animação Scroll
         const observer = new IntersectionObserver((entries) => {
@@ -597,11 +686,10 @@
         // Typing Effect
         const textElement = document.querySelector('.typing-text');
         const phrasesPT = ["Escritórios", "Sua Clínica", "Pequenas Empresas", "Seu Home Office"];
-        const phrasesEN = ["Offices", "Your Clinic", "Small Businesses", "Your Home Office"];
-        let isEn = false; let i = 0, j = 0, deleting = false;
+        let i = 0, j = 0, deleting = false;
 
         function type() {
-            const currentArr = isEn ? phrasesEN : phrasesPT;
+            const currentArr = phrasesPT;
             const current = currentArr[i % currentArr.length];
             textElement.textContent = deleting ? current.substring(0, j--) : current.substring(0, j++);
             if(!deleting && j > current.length) { deleting = true; setTimeout(type, 2000); }
@@ -636,26 +724,18 @@
         document.querySelectorAll('#main-nav a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 
         // Theme Toggle
-        document.getElementById('theme-toggle').addEventListener('click', (e) => {
-            document.body.classList.toggle('dark-mode');
+        const themeBtn = document.getElementById('theme-toggle');
+        function paintThemeBtn() {
             const dark = document.body.classList.contains('dark-mode');
-            e.currentTarget.innerHTML = dark ? '☀️' : '🌙';
-            e.currentTarget.setAttribute('aria-label', dark ? 'Ativar modo claro' : 'Ativar modo escuro');
-        });
-
-        // Language Toggle
-        document.getElementById('lang-toggle').addEventListener('click', (e) => {
-            isEn = !isEn; e.currentTarget.innerText = isEn ? 'PT' : '🌐';
-            e.currentTarget.setAttribute('aria-label', isEn ? 'Switch language to Portuguese' : 'Mudar idioma para inglês');
-            document.querySelectorAll('[data-en]').forEach(el => {
-                if (!el.dataset.pt) el.dataset.pt = el.innerHTML;
-                el.innerHTML = isEn ? el.dataset.en : el.dataset.pt;
-            });
-            document.querySelectorAll('[data-en-placeholder]').forEach(el => {
-                if (!el.dataset.ptPlaceholder) el.dataset.ptPlaceholder = el.placeholder;
-                el.placeholder = isEn ? el.dataset.enPlaceholder : el.dataset.ptPlaceholder;
-            });
-            j = 0; deleting = false; textElement.textContent = "";
+            themeBtn.textContent = dark ? '☀️' : '🌙';
+            themeBtn.setAttribute('aria-label', dark ? 'Ativar modo claro' : 'Ativar modo escuro');
+            themeBtn.title = dark ? 'Modo claro' : 'Modo escuro';
+        }
+        paintThemeBtn();
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            try { localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light'); } catch (e) {}
+            paintThemeBtn();
         });
 
         // LÓGICA DO CHATBOT
@@ -673,10 +753,10 @@
             chatStarted = true;
             chatContent.innerHTML = '';
             setTimeout(() => {
-                const welcome = isEn ? "Hello! How can I help you today?" : "Olá! Sou o assistente da LeoTech. Como posso agilizar seu atendimento hoje?";
-                const b1 = isEn ? "Pricing" : "💰 Ver Preços";
-                const b2 = isEn ? "Format PC" : "💻 Formatar PC";
-                const b3 = isEn ? "Remote Support" : "🌐 Suporte Remoto";
+                const welcome = "Olá! Sou o assistente da LeoTech. Como posso agilizar seu atendimento hoje?";
+                const b1 = "💰 Ver Preços";
+                const b2 = "💻 Formatar PC";
+                const b3 = "🌐 Suporte Remoto";
                 chatContent.innerHTML = `
                     <div class="msg bot">${welcome}</div>
                     <div class="quick-replies" id="quickReplies">
@@ -716,7 +796,7 @@
             if(lower.includes('formatar') || lower.includes('lento') || lower.includes('vírus') || lower.includes('travando') || lower.includes('pc')) return "Seu computador está travando? É nossa especialidade. Salvamos todos os seus arquivos, removemos vírus e deixamos a máquina rápida como nova por R$ 110,00." + link;
             if(lower.includes('remoto') || lower.includes('anydesk') || lower.includes('distância')) return "Muitos problemas (como e-mail e falhas de software) resolvemos na hora via AnyDesk, sem você precisar sair de casa ou esperar uma visita técnica." + link;
             if(lower.includes('rede') || lower.includes('wi-fi') || lower.includes('internet') || lower.includes('pasta') || lower.includes('empresa')) return "Somos especialistas em infraestrutura! Configuramos redes locais, melhoramos o sinal do seu Wi-Fi e criamos pastas compartilhadas seguras para sua equipe trabalhar conectada." + link;
-            if(lower.includes('pagamento') || lower.includes('cartão') || lower.includes('pix')) return "Aceitamos PIX, dinheiro e todos os cartões de crédito e débito (com opção de parcelamento para serviços maiores).";
+            if(lower.includes('pagamento') || lower.includes('cartão') || lower.includes('pix')) return "Aceitamos PIX, dinheiro e cartões de débito e crédito, com opção de parcelamento para serviços maiores.";
             if(lower.includes('bom dia') || lower.includes('boa tarde') || lower.includes('boa noite') || lower.includes('olá') || lower.includes('oi')) return "Olá! Tudo ótimo por aqui. Como posso ajudar com sua tecnologia hoje? Se preferir, pode me chamar direto no WhatsApp!" + link;
             if(lower.includes('contato') || lower.includes('telefone') || lower.includes('número')) return "Nosso telefone e WhatsApp é (11) 98603-9829. Fique à vontade para mandar uma mensagem!" + link;
             return "Entendi! Cada caso tem suas particularidades. O ideal é eu analisar sua situação rapidinho para te passar a melhor solução. Me chama aqui:" + link;
@@ -733,6 +813,8 @@
             if(e.clientY < 0 && !popupShown) { exitPopup.classList.add('show'); try { sessionStorage.setItem('popupShown', 'true'); } catch(e) {} popupShown = true; }
         });
         document.getElementById('close-popup').addEventListener('click', () => exitPopup.classList.remove('show'));
+
+        document.getElementById('year').textContent = new Date().getFullYear();
 
         // Política de Privacidade
         const privacyModal = document.getElementById('privacy-modal');
