@@ -16,7 +16,6 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" integrity="sha512-wC/cunGGDjXSl9OHO00ugmzhq515sLddM7562A8WEhh00D0RkmHsa0A/Zz3oE9t9k4D5y5oD4z2u3bV1kZ01A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
 
     <style>
@@ -101,13 +100,43 @@
         .header-controls { display: flex; gap: 10px; }
         .icon-btn { background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-main); transition: 0.3s; padding: 5px; }
         .icon-btn:hover { color: var(--primary-color); transform: scale(1.1); }
+        .menu-toggle { display: none; font-size: 1.4rem; width: 44px; height: 44px; }
+        section[id] { scroll-margin-top: 80px; }
+        .link-btn { background: none; border: none; color: var(--primary-color); font: inherit; font-weight: bold; cursor: pointer; text-decoration: underline; padding: 0; }
+        .form-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 10px; }
+
+        /* Menu e ajustes para celular */
+        @media (max-width: 767px) {
+            header { padding: 10px 0; }
+            .header-inner { flex-wrap: wrap; gap: 0; }
+            .logo { font-size: 1.3rem; }
+            .header-controls { align-items: center; gap: 4px; }
+            .icon-btn { width: 44px; height: 44px; }
+            .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
+            nav { order: 3; flex-basis: 100%; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+            header.nav-open nav { max-height: 400px; }
+            nav ul { flex-direction: column; gap: 0; padding: 8px 0; }
+            nav li { border-top: 1px solid var(--border-color); }
+            nav a { display: block; padding: 14px 4px; font-size: 1.05rem; }
+            .hero { padding: 30px 0 40px; gap: 30px; }
+            .hero h1 { font-size: clamp(1.8rem, 8vw, 2.3rem); }
+            .hero-content, .hero-image-container { min-width: 0; flex-basis: 100%; }
+            .section { padding: 45px 0; }
+            h2 { font-size: 1.8rem; margin-bottom: 30px; }
+            .about-image { min-height: 240px; }
+            .offer-card { padding: 30px 20px; }
+            .offer-price { font-size: 2.5rem; }
+            .map-container { height: 250px; }
+            .chat-window { right: 10px; left: 10px; width: auto; max-width: none; bottom: 85px; }
+            .cookie-banner { padding: 15px 90px 15px 15px; justify-content: flex-start; text-align: left; }
+        }
 
         /* Hero */
         .hero { padding: 60px 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 40px; position: relative; z-index: 2; }
         .hero-content { flex: 1; min-width: 300px; text-align: center; }
         .hero h1 { font-size: 2.3rem; line-height: 1.2; margin-bottom: 20px; }
         .hero p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px; }
-        .typing-text { color: var(--primary-color); font-weight: 800; border-right: 3px solid var(--primary-color); animation: blink 0.8s infinite; white-space: nowrap; }
+        .typing-text { display: inline-block; min-height: 1.2em; min-width: 2px; vertical-align: bottom; color: var(--primary-color); font-weight: 800; border-right: 3px solid var(--primary-color); animation: blink 0.8s infinite; white-space: nowrap; }
         @keyframes blink { 50% { border-color: transparent; } }
         .hero-buttons { display: flex; flex-direction: column; gap: 15px; }
         .hero-image-container { flex: 1; min-width: 300px; }
@@ -189,6 +218,11 @@
         .exit-popup-content { background: var(--bg-card); padding: 40px 20px; border-radius: 20px; max-width: 450px; width: 90%; text-align: center; position: relative; transform: scale(0.8); transition: 0.3s; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
         .exit-popup-overlay.show .exit-popup-content { transform: scale(1); }
         .close-popup { position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 2rem; color: var(--text-muted); cursor: pointer; }
+        .privacy-content { max-width: 640px; max-height: 85vh; overflow-y: auto; text-align: left; padding: 40px 25px 30px; }
+        .privacy-content h3 { font-size: 1.05rem; margin: 18px 0 6px; }
+        .privacy-content p, .privacy-content li { font-size: 0.92rem; color: var(--text-muted); }
+        .privacy-content ul { padding-left: 20px; }
+        .privacy-content a { color: var(--primary-color); }
         .pulse-btn { animation: pulse 2s infinite; }
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
 
@@ -244,7 +278,7 @@
     <header>
         <div class="container header-inner">
             <div class="logo"><i class="fas fa-layer-group"></i> LeoTech</div>
-            <nav>
+            <nav id="main-nav" aria-label="Menu principal">
                 <ul>
                     <li><a href="#sobre" data-en="About">Sobre</a></li>
                     <li><a href="#servicos" data-en="Services">Serviços</a></li>
@@ -254,8 +288,9 @@
                 </ul>
             </nav>
             <div class="header-controls">
-                <button id="lang-toggle" class="icon-btn" title="Translate">🌐</button>
-                <button id="theme-toggle" class="icon-btn" title="Theme">🌙</button>
+                <button id="lang-toggle" class="icon-btn" title="Translate / Traduzir" aria-label="Mudar idioma para inglês">🌐</button>
+                <button id="theme-toggle" class="icon-btn" title="Modo escuro" aria-label="Ativar modo escuro">🌙</button>
+                <button id="menu-toggle" class="icon-btn menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="main-nav">☰</button>
             </div>
         </div>
     </header>
@@ -271,7 +306,7 @@
                 </div>
             </div>
             <div class="hero-image-container reveal">
-                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80" class="hero-image" alt="Tech">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80" class="hero-image" alt="Placa de circuito iluminada representando tecnologia" width="1200" height="801">
             </div>
         </section>
 
@@ -280,7 +315,7 @@
             <p class="text-center reveal" style="max-width: 800px; margin: 0 auto 50px; color: var(--text-muted); font-size: 1.1rem;" data-en="Since 2014, LeoTech Solutions has been your trusted IT partner. We are dedicated to offering customized solutions that meet the specific needs of each client.">Desde 2014, a LeoTech Solutions tem sido a parceira de confiança em TI. Somos dedicados a oferecer soluções personalizadas que atendem às necessidades específicas de cada cliente.</p>
 
             <div class="about-grid reveal">
-                <div><img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80" alt="Equipe" class="about-image"></div>
+                <div><img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80" alt="Profissional de TI trabalhando no computador" class="about-image" loading="lazy"></div>
                 <div class="about-text-content">
                     <div class="card" style="margin: 0;">
                         <h3 data-en="Our Mission"><i class="fas fa-bullseye" style="color: var(--primary-color); margin-right: 8px;"></i> Nossa Missão</h3>
@@ -347,17 +382,18 @@
             <h2 class="reveal" data-en="Pricing & Offers">Nossos Orçamentos</h2>
             <div class="offer-wrapper reveal">
                 <div class="offer-card">
-                    <h3 data-en="Installation and Activation">Instalação e Ativação</h3>
-                    <p data-en="Windows 10/11 Pro + Office 365">Windows 10 Pro ou 11 Pro + Pacote Office 365</p>
+                    <h3 data-en="Complete Formatting">Formatação Completa</h3>
+                    <p data-en="Backup + Windows 10/11 Pro + Office 365">Backup + Windows 10 Pro ou 11 Pro + Pacote Office 365</p>
                     <div class="offer-price">R$ 110,00</div>
                     <ul class="check-list">
+                        <li data-en="Backup of your files"><i class="fas fa-check-circle"></i> Backup dos seus arquivos</li>
                         <li data-en="Complete OS installation"><i class="fas fa-check-circle"></i> Instalação completa do sistema</li>
                         <li data-en="Windows Activation"><i class="fas fa-check-circle"></i> Ativação do Windows Pro</li>
                         <li data-en="Office 365 Suite"><i class="fas fa-check-circle"></i> Instalação do Pacote Office 365</li>
                         <li data-en="Antivirus configuration"><i class="fas fa-check-circle"></i> Configuração de Antivírus</li>
                         <li data-en="Post-installation support"><i class="fas fa-check-circle"></i> Garantia e Suporte</li>
                     </ul>
-                    <a href="https://wa.me/5511986039829?text=Olá!%20Vi%20no%20site%20o%20pacote%20de%20formatação%20por%20R$%20110%20e%20quero%20agendar." class="btn btn-gradient" target="_blank" data-en="Schedule Now">Agendar Agora</a>
+                    <a href="https://wa.me/5511986039829?text=Olá!%20Vi%20no%20site%20o%20pacote%20de%20Formatação%20Completa%20por%20R$%20110%20e%20quero%20agendar." class="btn btn-gradient" target="_blank" data-en="Schedule Now">Agendar Agora</a>
                 </div>
             </div>
         </section>
@@ -366,35 +402,35 @@
             <h2 class="reveal" data-en="Frequently Asked Questions">Perguntas Frequentes</h2>
             <div style="max-width: 800px; margin: 0 auto;">
                 <div class="faq-item reveal">
-                    <div class="faq-q"><span data-en="What is the response time?">Qual é o tempo de resposta para suporte?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span data-en="What is the response time?">Qual é o tempo de resposta para suporte?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
                     <div class="faq-a" data-en="Immediate via WhatsApp. Remote support starts instantly.">Atendimento imediato via WhatsApp. Suporte remoto iniciamos na mesma hora. Visitas técnicas em até 24 horas.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-q"><span data-en="Do you offer on-site support?">Vocês atendem em domicílio?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span data-en="Do you offer on-site support?">Vocês atendem em domicílio?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
                     <div class="faq-a" data-en="Yes, across São Paulo.">Sim! Realizamos visitas técnicas e atendemos a domicílio ou na sua empresa em toda São Paulo e Região Metropolitana.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-q"><span data-en="How does remote support work?">Como funciona o suporte remoto?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span data-en="How does remote support work?">Como funciona o suporte remoto?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
                     <div class="faq-a" data-en="By downloading AnyDesk, we securely access your machine while you watch everything.">Você baixa o programa AnyDesk e nos passa o código gerado. Nós acessamos sua máquina com segurança enquanto você acompanha tudo pela sua tela.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-q"><span data-en="Do you back up before formatting?">Vocês fazem backup antes de formatar?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span data-en="Do you back up before formatting?">Vocês fazem backup antes de formatar?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
                     <div class="faq-a" data-en="Yes! Saving your files and photos is our priority before any formatting.">Com certeza! Salvar seus arquivos, fotos e documentos importantes é a nossa prioridade número um antes de qualquer formatação.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-q"><span data-en="Do you serve businesses on weekends?">Atendem empresas aos finais de semana?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span data-en="Do you serve businesses on weekends?">Atendem empresas aos finais de semana?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
                     <div class="faq-a" data-en="Yes, we schedule services on weekends to avoid interrupting your business hours.">Sim, para urgências e projetos que não podem parar o seu negócio em horário comercial, agendamos aos sábados ou domingos.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-q"><span data-en="Do you sell computer parts?">Vendem peças de computador?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span data-en="Do you sell computer parts?">Vendem peças de computador?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
                     <div class="faq-a" data-en="We focus on services, but provide free consulting on where to buy the best parts.">Nosso foco é a prestação de serviços. Porém, oferecemos consultoria gratuita para indicar as melhores peças e sites de confiança para sua necessidade.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-q"><span data-en="How does pricing work?">Como funciona o orçamento?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
-                    <div class="faq-a" data-en="Fixed price for standard services (R$ 110).">Serviços padrões como formatação têm valor fixo (R$ 110). Para infraestrutura, fazemos análise e passamos orçamento detalhado.</div>
+                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span data-en="How does pricing work?">Como funciona o orçamento?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-a" data-en="Fixed price for standard services (R$ 110).">Serviços padrões como a Formatação Completa têm valor fixo (R$ 110). Para infraestrutura, fazemos análise e passamos orçamento detalhado.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-q"><span data-en="Is there a warranty?">Oferecem garantia nos serviços?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
+                    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span data-en="Is there a warranty?">Oferecem garantia nos serviços?</span> <i class="fas fa-chevron-down faq-icon"></i></div>
                     <div class="faq-a" data-en="Yes, full technical warranty.">Sim, todos os nossos serviços possuem garantia total sobre a mão de obra técnica.</div>
                 </div>
             </div>
@@ -410,7 +446,7 @@
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon" style="background: #28a745;"><i class="far fa-envelope"></i></div>
-                        <div><strong>E-mail</strong><br><span style="color: var(--text-muted);">contato@leotechsolutions.com.br</span></div>
+                        <div><strong>E-mail</strong><br><a href="mailto:eleonardorodrigues18@gmail.com" style="color: var(--text-muted); text-decoration: none; word-break: break-all;">eleonardorodrigues18@gmail.com</a></div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon" style="background: #a200ff;"><i class="fas fa-map-marker-alt"></i></div>
@@ -423,11 +459,16 @@
 
                     <div style="margin-top: 30px;">
                         <h3 style="margin-bottom: 15px;" data-en="Send a Message">Enviar Mensagem</h3>
-                        <form action="https://formspree.io/f/SEU_CODIGO_AQUI" method="POST">
-                            <div class="form-group"><input type="text" name="nome" required placeholder="Seu Nome" data-en-placeholder="Your Name"></div>
-                            <div class="form-group"><input type="email" name="email" required placeholder="Seu E-mail" data-en-placeholder="Your Email"></div>
-                            <div class="form-group"><textarea name="mensagem" rows="4" required placeholder="Sua Mensagem..." data-en-placeholder="Your Message..."></textarea></div>
+                        <form action="https://formsubmit.co/eleonardorodrigues18@gmail.com" method="POST">
+                            <input type="hidden" name="_subject" value="Nova mensagem pelo site LeoTech">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+                            <div class="form-group"><input type="text" name="nome" required autocomplete="name" aria-label="Seu nome" placeholder="Seu Nome" data-en-placeholder="Your Name"></div>
+                            <div class="form-group"><input type="email" name="email" required autocomplete="email" aria-label="Seu e-mail" placeholder="Seu E-mail" data-en-placeholder="Your Email"></div>
+                            <div class="form-group"><textarea name="mensagem" rows="4" required aria-label="Sua mensagem" placeholder="Sua Mensagem..." data-en-placeholder="Your Message..."></textarea></div>
                             <button type="submit" class="btn btn-submit" data-en="Send">Enviar Formulário</button>
+                            <p class="form-note">Ao enviar, você concorda com a nossa <button type="button" class="link-btn open-privacy">Política de Privacidade</button>.</p>
                         </form>
                     </div>
                 </div>
@@ -442,49 +483,78 @@
     <footer>
         <div class="container">
             <p data-en="© 2026 LeoTech Solutions. All rights reserved.">© 2026 LeoTech Solutions. Todos os direitos reservados.</p>
+            <p style="margin-top: 8px;"><button type="button" class="link-btn open-privacy">Política de Privacidade</button></p>
         </div>
     </footer>
 
     <div id="cookie-banner" class="cookie-banner">
-        <p data-en="We use cookies to ensure you get the best experience.">Usamos cookies para garantir a melhor experiência no site.</p>
+        <p>Usamos o armazenamento do navegador só para lembrar suas preferências. Saiba mais na <button type="button" class="link-btn open-privacy">Política de Privacidade</button>.</p>
         <button id="accept-cookies" class="btn btn-primary" style="padding: 8px 15px; margin: 0;" data-en="Accept">Aceitar</button>
     </div>
 
     <div id="exit-popup" class="exit-popup-overlay">
         <div class="exit-popup-content">
-            <button id="close-popup" class="close-popup">×</button>
+            <button id="close-popup" class="close-popup" aria-label="Fechar aviso">×</button>
             <h2 style="color: var(--primary-color); margin-bottom: 10px;">Espera aí! 🛑</h2>
             <p style="margin-bottom: 20px;">Problemas urgentes no PC ou na rede? Fale com um técnico agora mesmo e resolva rápido!</p>
             <a href="https://wa.me/5511986039829?text=Espera!%20Ainda%20preciso%20de%20ajuda!" target="_blank" class="btn btn-primary pulse-btn" style="background: var(--whatsapp-color); display: block; width: 100%; border:none;">Falar no WhatsApp</a>
         </div>
     </div>
 
-    <button id="back-to-top" class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+    <div id="privacy-modal" class="exit-popup-overlay" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+        <div class="exit-popup-content privacy-content">
+            <button id="close-privacy" class="close-popup" aria-label="Fechar Política de Privacidade">×</button>
+            <h2 id="privacy-title" style="color: var(--primary-color); margin-bottom: 15px; font-size: 1.6rem;">Política de Privacidade</h2>
+            <p><em>Última atualização: outubro de 2026</em></p>
+            <h3>1. Quem somos</h3>
+            <p>Este site pertence à LeoTech Solutions, responsável pelo tratamento dos dados pessoais coletados aqui, conforme a Lei Geral de Proteção de Dados (Lei nº 13.709/2018 – LGPD). Contato: <a href="mailto:eleonardorodrigues18@gmail.com">eleonardorodrigues18@gmail.com</a> ou WhatsApp (11) 98603-9829.</p>
+            <h3>2. Quais dados coletamos</h3>
+            <ul>
+                <li><strong>Formulário de contato:</strong> nome, e-mail e a mensagem que você escrever.</li>
+                <li><strong>WhatsApp:</strong> ao clicar nos botões, você é levado ao WhatsApp e a conversa segue as regras do próprio aplicativo.</li>
+                <li><strong>Assistente do site:</strong> as perguntas digitadas ficam só no seu navegador e não são enviadas nem guardadas por nós.</li>
+                <li><strong>Armazenamento do navegador:</strong> guardamos apenas se você aceitou o aviso e se o aviso de saída já apareceu. Não usamos cookies de publicidade nem de rastreamento.</li>
+            </ul>
+            <h3>3. Para que usamos</h3>
+            <p>Somente para responder seu contato, passar orçamentos e prestar o serviço solicitado. Não vendemos nem compartilhamos seus dados para fins de marketing.</p>
+            <h3>4. Base legal</h3>
+            <p>Tratamos seus dados com base no seu consentimento e na execução de procedimentos preliminares a um contrato solicitados por você (art. 7º, I e V, da LGPD).</p>
+            <h3>5. Serviços de terceiros</h3>
+            <p>O site usa serviços externos que podem receber dados técnicos da sua visita (como o endereço IP): FormSubmit (envio do formulário por e-mail), Google Maps (mapa), Cloudflare CDN (ícones e scripts), Unsplash (imagens) e GitHub Pages (hospedagem). Cada um tem sua própria política de privacidade.</p>
+            <h3>6. Por quanto tempo guardamos</h3>
+            <p>As mensagens são mantidas apenas pelo tempo necessário para o atendimento e eventuais garantias do serviço, e depois são apagadas.</p>
+            <h3>7. Seus direitos</h3>
+            <p>Você pode, a qualquer momento, pedir para confirmar, acessar, corrigir ou excluir seus dados, ou revogar seu consentimento (art. 18 da LGPD). É só enviar um e-mail para o contato acima.</p>
+        </div>
+    </div>
 
-    <div class="chat-window" id="chatWindow">
+    <button id="back-to-top" class="back-to-top" aria-label="Voltar ao topo"><i class="fas fa-chevron-up" aria-hidden="true"></i></button>
+
+    <div class="chat-window" id="chatWindow" role="dialog" aria-label="Assistente virtual">
         <div class="chat-header">
             <span><i class="fas fa-robot"></i> Assistente</span>
             <div>
-                <span style="cursor:pointer; font-size: 0.85em; margin-right: 15px; background: rgba(0,0,0,0.2); padding: 5px 8px; border-radius: 8px;" onclick="resetChat()" title="Encerrar Conversa"><i class="fas fa-trash-alt"></i> Limpar</span>
-                <span style="cursor:pointer; font-size: 1.2em;" onclick="toggleChat()">✖</span>
+                <button type="button" style="cursor:pointer; font-size: 0.85em; margin-right: 15px; background: rgba(0,0,0,0.2); color: white; border: none; padding: 5px 8px; border-radius: 8px;" onclick="resetChat()" title="Encerrar Conversa" aria-label="Limpar conversa"><i class="fas fa-trash-alt" aria-hidden="true"></i> Limpar</button>
+                <button type="button" style="cursor:pointer; font-size: 1.2em; background: none; border: none; color: white;" onclick="toggleChat()" aria-label="Fechar assistente">✖</button>
             </div>
         </div>
         <div class="chat-content" id="chatContent"></div>
         <div class="chat-footer">
-            <input type="text" id="chatInput" placeholder="Digite sua dúvida...">
-            <button onclick="handleSend()"><i class="fas fa-paper-plane"></i></button>
+            <input type="text" id="chatInput" placeholder="Digite sua dúvida..." aria-label="Digite sua dúvida">
+            <button onclick="handleSend()" aria-label="Enviar mensagem"><i class="fas fa-paper-plane" aria-hidden="true"></i></button>
         </div>
     </div>
 
     <div class="float-group">
-        <button class="float-btn btn-chat-toggle" onclick="toggleChat()"><i class="fas fa-comments"></i></button>
-        <a href="https://wa.me/5511986039829?text=Olá!%20Estava%20navegando%20no%20site%20da%20LeoTech%20e%20gostaria%20de%20uma%20informação." class="float-btn btn-wpp" target="_blank" title="WhatsApp Direto"><i class="fab fa-whatsapp"></i></a>
+        <button class="float-btn btn-chat-toggle" onclick="toggleChat()" aria-label="Abrir assistente virtual"><i class="fas fa-comments" aria-hidden="true"></i></button>
+        <a href="https://wa.me/5511986039829?text=Olá!%20Estava%20navegando%20no%20site%20da%20LeoTech%20e%20gostaria%20de%20uma%20informação." class="float-btn btn-wpp" target="_blank" title="WhatsApp Direto" aria-label="Falar no WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script>
         // EFEITO 3D
-        VanillaTilt.init(document.querySelectorAll(".tilt-card"), {
+        const isMobile = window.matchMedia('(max-width: 767px)').matches;
+        if (window.VanillaTilt && window.matchMedia('(hover: hover) and (pointer: fine)').matches) VanillaTilt.init(document.querySelectorAll(".tilt-card"), {
             max: 15,
             speed: 400,
             glare: true,
@@ -493,9 +563,9 @@
         });
 
         // PARTÍCULAS EM TELA CHEIA
-        particlesJS("particles-js", {
+        if (window.particlesJS) particlesJS("particles-js", {
             "particles": {
-                "number": { "value": 90, "density": { "enable": true, "value_area": 800 } },
+                "number": { "value": isMobile ? 35 : 90, "density": { "enable": true, "value_area": 800 } },
                 "color": { "value": "#007bff" },
                 "shape": { "type": "circle" },
                 "opacity": { "value": 0.5, "random": false },
@@ -544,18 +614,35 @@
                     if (other !== q) { other.classList.remove('active'); other.nextElementSibling.classList.remove('active'); }
                 });
                 q.classList.toggle('active'); a.classList.toggle('active');
+                document.querySelectorAll('.faq-q').forEach(x => x.setAttribute('aria-expanded', x.classList.contains('active')));
             });
+            q.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); q.click(); } });
         });
+
+        // Menu mobile
+        const headerEl = document.querySelector('header');
+        const menuBtn = document.getElementById('menu-toggle');
+        function setMenu(open) {
+            headerEl.classList.toggle('nav-open', open);
+            menuBtn.setAttribute('aria-expanded', open);
+            menuBtn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+            menuBtn.textContent = open ? '✕' : '☰';
+        }
+        menuBtn.addEventListener('click', () => setMenu(!headerEl.classList.contains('nav-open')));
+        document.querySelectorAll('#main-nav a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 
         // Theme Toggle
         document.getElementById('theme-toggle').addEventListener('click', (e) => {
             document.body.classList.toggle('dark-mode');
-            e.target.innerHTML = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+            const dark = document.body.classList.contains('dark-mode');
+            e.currentTarget.innerHTML = dark ? '☀️' : '🌙';
+            e.currentTarget.setAttribute('aria-label', dark ? 'Ativar modo claro' : 'Ativar modo escuro');
         });
 
         // Language Toggle
         document.getElementById('lang-toggle').addEventListener('click', (e) => {
-            isEn = !isEn; e.target.innerText = isEn ? 'PT' : '🌐';
+            isEn = !isEn; e.currentTarget.innerText = isEn ? 'PT' : '🌐';
+            e.currentTarget.setAttribute('aria-label', isEn ? 'Switch language to Portuguese' : 'Mudar idioma para inglês');
             document.querySelectorAll('[data-en]').forEach(el => {
                 if (!el.dataset.pt) el.dataset.pt = el.innerHTML;
                 el.innerHTML = isEn ? el.dataset.en : el.dataset.pt;
@@ -621,7 +708,7 @@
         function getBotBrain(input) {
             const lower = input.toLowerCase();
             const link = "<br><br>👉 <a href='https://wa.me/5511986039829?text=Olá,%20estava%20falando%20com%20o%20assistente%20no%20site%20e%20preciso%20de%20ajuda.' target='_blank' style='color:var(--primary-color);font-weight:bold;text-decoration:none;'><i class='fab fa-whatsapp'></i> Chamar no WhatsApp</a>";
-            if(lower.includes('preço') || lower.includes('valor') || lower.includes('orçamento') || lower.includes('quanto')) return "Temos um pacote de formatação completa (com backup, Windows e Office) por R$ 110,00. Para redes corporativas e servidores, montamos um orçamento sob medida para sua empresa!" + link;
+            if(lower.includes('preço') || lower.includes('valor') || lower.includes('orçamento') || lower.includes('quanto')) return "Temos o pacote de Formatação Completa (com backup, Windows e Office) por R$ 110,00. Para redes corporativas e servidores, montamos um orçamento sob medida para sua empresa!" + link;
             if(lower.includes('formatar') || lower.includes('lento') || lower.includes('vírus') || lower.includes('travando') || lower.includes('pc')) return "Seu computador está travando? É nossa especialidade. Salvamos todos os seus arquivos, removemos vírus e deixamos a máquina rápida como nova por R$ 110,00." + link;
             if(lower.includes('remoto') || lower.includes('anydesk') || lower.includes('distância')) return "Muitos problemas (como e-mail e falhas de software) resolvemos na hora via AnyDesk, sem você precisar sair de casa ou esperar uma visita técnica." + link;
             if(lower.includes('rede') || lower.includes('wi-fi') || lower.includes('internet') || lower.includes('pasta') || lower.includes('empresa')) return "Somos especialistas em infraestrutura! Configuramos redes locais, melhoramos o sinal do seu Wi-Fi e criamos pastas compartilhadas seguras para sua equipe trabalhar conectada." + link;
@@ -637,17 +724,29 @@
         btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 
         const exitPopup = document.getElementById('exit-popup');
-        let popupShown = sessionStorage.getItem('popupShown');
+        let popupShown = null; try { popupShown = sessionStorage.getItem('popupShown'); } catch(e) {}
         document.addEventListener('mouseleave', e => {
-            if(e.clientY < 0 && !popupShown) { exitPopup.classList.add('show'); sessionStorage.setItem('popupShown', 'true'); popupShown = true; }
+            if(e.clientY < 0 && !popupShown) { exitPopup.classList.add('show'); try { sessionStorage.setItem('popupShown', 'true'); } catch(e) {} popupShown = true; }
         });
         document.getElementById('close-popup').addEventListener('click', () => exitPopup.classList.remove('show'));
 
+        // Política de Privacidade
+        const privacyModal = document.getElementById('privacy-modal');
+        let lastFocus = null;
+        document.querySelectorAll('.open-privacy').forEach(b => b.addEventListener('click', () => {
+            lastFocus = document.activeElement; privacyModal.classList.add('show'); document.getElementById('close-privacy').focus();
+        }));
+        function closePrivacy() { privacyModal.classList.remove('show'); if (lastFocus) lastFocus.focus(); }
+        document.getElementById('close-privacy').addEventListener('click', closePrivacy);
+        privacyModal.addEventListener('click', e => { if (e.target === privacyModal) closePrivacy(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') { closePrivacy(); exitPopup.classList.remove('show'); } });
+
         // Cookies
         const cookieBanner = document.getElementById('cookie-banner');
-        if(!localStorage.getItem('cookiesOK')) setTimeout(() => cookieBanner.classList.add('show'), 2000);
+        let cookiesOK = null; try { cookiesOK = localStorage.getItem('cookiesOK'); } catch(e) {}
+        if(!cookiesOK) setTimeout(() => cookieBanner.classList.add('show'), 2000);
         document.getElementById('accept-cookies').addEventListener('click', () => {
-            localStorage.setItem('cookiesOK', 'true'); cookieBanner.classList.remove('show');
+            try { localStorage.setItem('cookiesOK', 'true'); } catch(e) {} cookieBanner.classList.remove('show');
         });
 
     </script>
