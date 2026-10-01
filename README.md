@@ -12,6 +12,7 @@ Site de uma página, feito em HTML, CSS e JavaScript puros (sem framework), hosp
 
 - Layout responsivo com menu para celular
 - Modo claro e escuro (lembra a escolha e segue a configuração do aparelho)
+- Português e inglês (botão PT/EN; link direto em inglês com `?lang=en`)
 - Assistente virtual com respostas rápidas e atalho para o WhatsApp
 - Formulário de contato via [FormSubmit](https://formsubmit.co/)
 - Perguntas frequentes, formas de pagamento e Política de Privacidade (LGPD)
